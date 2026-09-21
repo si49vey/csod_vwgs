@@ -1,0 +1,190 @@
+<script>
+	var isRunning = false;
+		
+	var bUserIsVGEDButNotAdmin = false;
+  
+	var topicsToExclude = [
+		"Formación Novedades Ventas Volkswagen", "Formación Novedades Ventas Audi", "Formación Novedades Ventas Skoda",
+		"Formación Novedades Ventas VW VC", "Información General Academy", "Información Talent&People", "ITF", "Autodidácticos"
+	];
+  
+	function UserIsVGED()
+	{
+		console.log("Inicio llamada a 'UserIsVGED()'");
+
+		var vgedLogoImg = $('a#ctl00_header_headerResponsive_lnkLogo > img[src*="VGED_Academy_Logo"]');
+		console.log("vgedLogoImg.length: ", vgedLogoImg.length);
+
+		console.log("Fin llamada a 'UserIsVGED()'");
+
+		return (vgedLogoImg.length > 0);		
+	} 
+
+	function UserIsNotAdmin()
+	{
+		console.log("Inicio llamada a 'UserIsNotAdmin()'");
+
+		var ouAdminAnchor = $('a[href="/admin/OrgUnits.aspx?tab_page_id=-34"]');
+		console.log("ouAdminAnchor.length: ", ouAdminAnchor.length);
+		
+		console.log("Fin llamada a 'UserIsNotAdmin()'");
+		
+		return !(ouAdminAnchor.length > 0);;		
+	}
+  
+ 	function ParseTopicsFromCurrPage() 
+	{
+		var arrTemp = [];
+
+		// Seleccionar anchors
+		var anchors = $('a.style-for-subject-link');      
+        console.log("anchors.length: ", anchors.length);
+
+		// Extraer el texto
+		anchors.each(function() {
+			var text = $(this).text();
+			if (text) {
+				arrTemp.push(text.trim());
+			}
+		});
+
+		return arrTemp;
+	}
+	
+	function HideLODetailPageBtns() 
+	{
+		console.log("Inicio rutina 'HideLODetailPageBtns()'");
+      
+ 		var currLOTopics = ParseTopicsFromCurrPage() || [];
+		
+		var hasExcludedTopic = topicsToExclude.some(function(topic) {
+			return currLOTopics.includes(topic);
+		});
+		
+		if (hasExcludedTopic)
+			return;
+		
+		//Flyout
+		var div1 = $('div[data-test="LD_Flyout_Footer_Duplexed_Btn"] > div.sc-kasBVs.hYliVG');
+		console.log('div1.length: ', div1.length);
+		var btn1 = $('div[data-test="LD_Flyout_Footer_Duplexed_Btn"] > div.sc-kasBVs.hYliVG > button.sc-dliRfk.fPSCOs.sc-hgHYgh.VXRau');
+		console.log('btn1.length: ', btn1.length);
+		if (div1.length === 1 && btn1.length === 1)
+		{
+			var texto = $.trim(btn1.text());
+			console.log('Texto del botón de referencia: ', texto);
+			if (
+				(texto === 'Solicitar') || (texto === 'Request') || (texto === 'Notificarme') || (texto === 'Notify me') || (texto === 'Seleccione una sesión') ||
+				(texto === 'Guardar para después')
+			) {
+				div1.css('visibility', 'hidden');
+				console.log('div1 desactivado');
+			}
+        }
+		
+		//Solicitar
+		div1 = $('div[data-test="LD_Call_To_Action_Duplexed_Btn"] > div.sc-jdeSqf.dtVheb');
+		console.log('div1.length: ', div1.length);
+		btn1 = $('div[data-test="LD_Call_To_Action_Duplexed_Btn"] > div.sc-jdeSqf.dtVheb > button.sc-cjHlYL.bxVtMP.sc-cBrjTV.hxLJjT');
+		console.log('btn1.length: ', btn1.length);
+		if (div1.length === 1 && btn1.length === 1)
+		{
+			var texto = $.trim(btn1.text());
+			console.log('Texto del botón de referencia: ', texto);
+
+			if ((texto === 'Solicitar') || (texto === 'Request') || (texto === 'Iniciar') || (texto === 'Start') || (texto === 'Guardar para después') || (texto === 'Save for later')) {
+				div1.css('visibility', 'hidden');
+				console.log('div1 ocultado');
+			}
+
+			var div2 = $('div.sc-cqPOvA.EdeSp.add-color-grey');
+			console.log('div2.length: ', div2.length);
+			if (div2.length === 1) {
+				div2.css('visibility', 'hidden');
+				console.log('div2 ocultado');
+			}
+
+			var btn2 = $('button.sc-cjHlYL.kLdKUn');
+			console.log('btn2.length: ', btn2.length);
+			if (btn2.length === 1) {
+				btn2.css('visibility', 'hidden');
+				console.log('btn2 ocultado');
+			}
+		}
+
+		//Notificarme
+		div1 = $('div[data-test="LD_Call_To_Action_Duplexed_Btn"] > div.sc-kasBVs.hYliVG');
+		console.log('div1.length: ', div1.length);
+		btn1 = $('div[data-test="LD_Call_To_Action_Duplexed_Btn"] > div.sc-kasBVs.hYliVG > button.sc-dliRfk.fPSCOs.sc-hgHYgh.VXRau');
+		console.log('btn1.length: ', btn1.length);
+		if (div1.length === 1 && btn1.length === 1)
+		{
+			var texto = $.trim(btn1.text());
+			console.log('Texto del botón de referencia: ', texto);
+
+			if ((texto === 'Notificarme') || (texto === 'Notify me') || (texto === 'Seleccione una sesión')) {
+				div1.css('visibility', 'hidden');
+				console.log('div1 desactivado');
+			}
+
+			var div2 = $('div.sc-fKGOjr.cUfScH.add-color-grey');
+			console.log('div2.length: ', div2.length);
+			if (div2.length === 1) {
+				div2.css('visibility', 'hidden');
+				console.log('div2 ocultado');
+			}
+
+			var btn2 = $('button.sc-dliRfk.gmteQA');
+			console.log('btn2.length: ', btn2.length);
+			if (btn2.length === 1) {
+				btn2.css('visibility', 'hidden');
+				console.log('btn2 ocultado');
+			}
+
+			var para1 = $( 'p.sc-fhYwyz.dZdPDk.sc-eMigcr.goOwJv');
+			console.log('para1.length: ', para1.length);
+			if (para1.length === 1) {
+				para1.css('visibility', 'hidden');
+				console.log('para1 ocultado');
+			}
+
+			var anchor1 = $( 'a.sc-hIVACf.cuigtC.notify-me-btn');
+			console.log('anchor1.length: ', anchor1.length);
+			if (anchor1.length === 1) {
+				anchor1.css('visibility', 'hidden');
+				console.log('anchor1 ocultado');
+			}
+		}
+		
+		//Sessions Section
+		var section1 = $('section#upcoming-session-section-id');
+		console.log('section1.length: ', section1.length);
+		if (section1.length === 1) {
+			section1.css('display', 'none');
+			console.log('section1 ocultada');
+		}
+		
+		console.log("Fin rutina 'HideLODetailPageBtns()'");
+	}
+
+	$(document).ready(function ()
+	{
+		bUserIsVGEDButNotAdmin = UserIsVGED() && UserIsNotAdmin();
+
+		if (bUserIsVGEDButNotAdmin === true)
+		{
+			setInterval(function () 
+			{
+				if (isRunning) return;
+
+				isRunning = true;
+
+				console.log("Inicio llamada a 'HideLODetailPageBtns()'");
+				HideLODetailPageBtns();
+				console.log("Fin llamada a 'HideLODetailPageBtns()'");
+
+				isRunning = false;
+			}, 500);
+		}
+	});
+</script>

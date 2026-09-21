@@ -1,0 +1,827 @@
+Role Details
+Name:	
+Consultor API VGED
+  
+ID:	
+VGED-Consultor_API
+Category:	
+System Administration
+Parent:	
+System Administrator
+ Search
+Description:	
+Rol para usar en una aplicación que hace llamadas a las APIs
+  
+Active:	True
+
+Role Permissions
+Permission	Add Constraint	Constraints
+Past Training Requests Report		There are no constraints available for this permission.
+Absence Management - SSO Link - View		There are no constraints available for this permission.
+Access Bulk API - LMS - OLCO Metadata Feed		There are no constraints available for this permission.
+Access Bulk API - LMS - OLCO Transcript Feed		There are no constraints available for this permission.
+Access Capabilities - Library Load		There are no constraints available for this permission.
+Access Capabilities - User Profile Load		There are no constraints available for this permission.
+Access CHR - Employee Load		There are no constraints available for this permission.
+Access Edge Import		There are no constraints available for this permission.
+Access Feed - REC - Requisition Template Load		There are no constraints available for this permission.
+Access LMS - Certification Metadata Load		There are no constraints available for this permission.
+Access LMS - Curriculum Feed		There are no constraints available for this permission.
+Access LMS - Curriculum Load		There are no constraints available for this permission.
+Access LMS - Curriculum Transcripts Feed		There are no constraints available for this permission.
+Access LMS - Evaluation Question Bank Load		There are no constraints available for this permission.
+Access LMS - Events Feed		There are no constraints available for this permission.
+Access LMS - Events Load		There are no constraints available for this permission.
+Access LMS - External Training Feed		There are no constraints available for this permission.
+Access LMS - Facilities Load		There are no constraints available for this permission.
+Access LMS - ILT Instructors Feed		There are no constraints available for this permission.
+Access LMS - ILT Instructors Load		There are no constraints available for this permission.
+Access LMS - ILT Transcripts Feed		There are no constraints available for this permission.
+Access LMS - Learning Object Equivalencies Load		There are no constraints available for this permission.
+Access LMS - LO Availability Feed		There are no constraints available for this permission.
+Access LMS - LO Availability Load		There are no constraints available for this permission.
+Access LMS - LO Pre/Post Work Load		There are no constraints available for this permission.
+Access LMS - LO Prerequisite Load		There are no constraints available for this permission.
+Access LMS - Material Transcripts Feed		There are no constraints available for this permission.
+Access LMS - Materials Feed		There are no constraints available for this permission.
+Access LMS - Materials Load		There are no constraints available for this permission.
+Access LMS - OLCO Metadata Load		There are no constraints available for this permission.
+Access LMS - Online Course Assets Feed		There are no constraints available for this permission.
+Access LMS - Online Course Assets Load		There are no constraints available for this permission.
+Access LMS - Online Courses Feed		There are no constraints available for this permission.
+Access LMS - Online Courses Load		There are no constraints available for this permission.
+Access LMS - Online Transcripts Feed		There are no constraints available for this permission.
+Access LMS - Providers Load		There are no constraints available for this permission.
+Access LMS - Question Category Load		There are no constraints available for this permission.
+Access LMS - Question Load		There are no constraints available for this permission.
+Access LMS - Session Parts Feed		There are no constraints available for this permission.
+Access LMS - Session Parts Load		There are no constraints available for this permission.
+Access LMS - Sessions Feed		There are no constraints available for this permission.
+Access LMS - Sessions Load		There are no constraints available for this permission.
+Access LMS - Subjects Feed		There are no constraints available for this permission.
+Access LMS - Subjects Load		There are no constraints available for this permission.
+Access LMS - Test Mapping Feed		There are no constraints available for this permission.
+Access LMS - Test Mapping Load		There are no constraints available for this permission.
+Access LMS - Test Transcripts Feed		There are no constraints available for this permission.
+Access LMS - Tests Feed		There are no constraints available for this permission.
+Access LMS - Tests Load		There are no constraints available for this permission.
+Access LMS - Training Model Load		There are no constraints available for this permission.
+Access LMS - Video Transcripts Feed		There are no constraints available for this permission.
+Access LMS - Videos Feed		There are no constraints available for this permission.
+Access LMS - Videos Load		There are no constraints available for this permission.
+Access REC - Requisition Template Load		There are no constraints available for this permission.
+Access to EdCast	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+Action Items - EPM	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+Action Items - LMS	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+Action Items - View	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+Actions Items - Volunteer Management	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+Admin Compliance Dashboard - View		There are no constraints available for this permission.
+Announcements - View	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+Applicants: Send email from Manage Candidates		There are no constraints available for this permission.
+Approval Template Administration - View	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+Approve training	Add Constraint to Permission	
+Approve Training by Approver		There are no constraints available for this permission.
+Approve Training by Cost Center Approver		There are no constraints available for this permission.
+Approve Training by Manager		There are no constraints available for this permission.
+Assign Roles		There are no constraints available for this permission.
+Assign Training	Add Constraint to Permission	
+Assignment Tool - Bypass User Payment		There are no constraints available for this permission.
+Assignment Tool - Dynamic Re-assignment		There are no constraints available for this permission.
+Assignment Tool - Email Settings - View	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+Assignment Tool - Processing Start Time		There are no constraints available for this permission.
+Assignment Tool - Restrict to Users'' LO Availability	Add Constraint to Permission	
+Assignment Tool - Session Seat Increase		There are no constraints available for this permission.
+Assignment Tool - Training Start Date		There are no constraints available for this permission.
+Assignment Tool - Upload CSV File		There are no constraints available for this permission.
+Assignment Tool - View All Drafts	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+Assignment Tool Preferences		There are no constraints available for this permission.
+Attachments in Transcript - View	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+Average Competency Rating Report	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+Bio About - View	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+Bio Career Preferences - View	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+Browse for Training		There are no constraints available for this permission.
+Bulk Performance Reviews Report	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+Capabilities - Skills Profile - View	Add Constraint to Permission	
+Career Explorer - Explore (search)		There are no constraints available for this permission.
+Career Preference Location Bank		There are no constraints available for this permission.
+Catalog Integration - Sync catalog's content with third party integrations	Add Constraint to Permission	
+Certification - User View	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+Certification External Training Approval by Manager		There are no constraints available for this permission.
+Certification Summary Report	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+Certifications Details Report	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+Cohort Details - View Student Roster		There are no constraints available for this permission.
+Cohort Roster - Email Registered Users		There are no constraints available for this permission.
+Cohort Roster - View		There are no constraints available for this permission.
+Competency Assessment Bank Admin - View		There are no constraints available for this permission.
+Competency Assessment Freeform Question Report	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+Competency Assessment Gap Analysis Report	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+Competency Assessment Model		There are no constraints available for this permission.
+Competency Assessment Model Admin - View		There are no constraints available for this permission.
+Competency Assessment Response Report	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+Competency Assessment Score Comparison Report	Add Constraint to Permission	
+Compliance Training Hub	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+Compliance Training Hub - Manage Extension Period		There are no constraints available for this permission.
+Connect Community Report	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+Connect Profile Comments Report	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+Connect Topic Expert Report	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+Connect Topic Moderator Report	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+Content Manager - Draft LO - View	Add Constraint to Permission	
+Content Manager - View		There are no constraints available for this permission.
+Content Provider Summary Report	Add Constraint to Permission	
+Content Sales Transaction Report	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+Cost Center Billing Report	Add Constraint to Permission	
+Course Assessment Question Item Analysis Report	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+Course Assessment Results Report	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+Course Catalog - View	Add Constraint to Permission	
+	Restrict to Provider: Academy
+	Restrict to Provider: MyAcademy (ZOOM)
+	Restrict to Users LO Availability
+Course Code - View		There are no constraints available for this permission.
+Credit Card Billing Report	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+Curriculum Admin - View	Add Constraint to Permission	
+	Restrict to Provider: Academy
+	Restrict to Provider: MyAcademy (ZOOM)
+	Restrict to Users LO Availability
+Curriculum Player Options		There are no constraints available for this permission.
+Curriculum Report	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+Custom Form Data Report	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+Dashboards - View		There are no constraints available for this permission.
+Dashboards Details Report		There are no constraints available for this permission.
+Default Training Image Preferences		There are no constraints available for this permission.
+Deferral Payments Report	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+Delivery Report for Billing	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+Display all Training Custom Fields		There are no constraints available for this permission.
+Divisional Incomplete Online Training Report	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+Divisional Training Report	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+Download Courses from Catalog		There are no constraints available for this permission.
+Edge Import - Competency		There are no constraints available for this permission.
+Edge Import - Load Review scores		There are no constraints available for this permission.
+Edge Import - Load Review scores and pdfs		There are no constraints available for this permission.
+Edge Import - Performance - Goals		There are no constraints available for this permission.
+Edge Import - Performance - Goals - Feed		There are no constraints available for this permission.
+Edge Import - Performance - Goals - Load		There are no constraints available for this permission.
+Edge Import - Snapshot Documents		There are no constraints available for this permission.
+Edge Import - Snapshot Documents - Bulk API		There are no constraints available for this permission.
+Edge Import Learning - Modify Certification Creator		There are no constraints available for this permission.
+Edge Import Learning - Modify Training Creator		There are no constraints available for this permission.
+Edge Import Learning - Modify Training ID		There are no constraints available for this permission.
+Email Digest Administration - View	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+Emails by Learning Object - View	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+Employee API - View	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+Employee API - View - Constrained	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+Employee Competency Current Ratings Report	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+Employee Goals – Approve	Add Constraint to Permission	
+Employee Peers Report		There are no constraints available for this permission.
+Employee Pending Requests - View Employee Pays Option		There are no constraints available for this permission.
+Employee Relationships - Define		There are no constraints available for this permission.
+Employee Transcripts - Manager/Approver Access	Add Constraint to Permission	
+Enable Curricula Auto-Launch Option		There are no constraints available for this permission.
+Enterprise Billing Report	Add Constraint to Permission	
+Enterprise Competencies Report	Add Constraint to Permission	
+Enterprise Custom Billing Report	Add Constraint to Permission	
+Enterprise Incomplete Training Report	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+Enterprise Past Due Training Report	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+Enterprise Training Report	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+Events - View	Add Constraint to Permission	
+	Restrict to ILT Provider: Academy
+	Restrict to ILT Provider: MyAcademy (ZOOM)
+Events Calendar		There are no constraints available for this permission.
+Exception Training Report		There are no constraints available for this permission.
+Exceptions - View	Add Constraint to Permission	
+Exempt Reason Preferences		There are no constraints available for this permission.
+Expert Validation - View	Add Constraint to Permission	
+Express Class - Upload CSV		There are no constraints available for this permission.
+Express Class - View Training	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+	Restrict to Users LO Availability
+External Job Application API - Manage	Add Constraint to Permission	
+External Training-Add		There are no constraints available for this permission.
+External Users View Competencies		There are no constraints available for this permission.
+External Users View Reviews	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+Facilities - View	Add Constraint to Permission	
+Facility Requests - View	Add Constraint to Permission	
+Feedback - Request for other users	Add Constraint to Permission	
+Form Management Status Report	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+Forms - Approve		There are no constraints available for this permission.
+Galaxy Unified Navigation - View	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+Global Search - Certifications		There are no constraints available for this permission.
+Global Search - Connect		There are no constraints available for this permission.
+Global Search - People	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+Global Search - Training	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+Goal Details Report	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+Goal Exception Report	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+Goal Hierarchy Report	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+Goal Locking		There are no constraints available for this permission.
+Goal Progress Report	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+Goal Status Report	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+Goal Target Report	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+Goal Tasks Summary Report	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+Goals Delegation Permission		There are no constraints available for this permission.
+Goals Library		There are no constraints available for this permission.
+Goals-Dynamic Assignment Option		There are no constraints available for this permission.
+Grades - View		There are no constraints available for this permission.
+Grant Employee Recognition	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+Group - View	Add Constraint to Permission	
+	Restricted to Group: Volkswagen Group España Distribución (include subordinates)
+Groups Criteria Report		There are no constraints available for this permission.
+Guest User Learner Home		There are no constraints available for this permission.
+Help Link - User		There are no constraints available for this permission.
+ILT Enrollment Summary Report	Add Constraint to Permission	
+	Restrict to ILT Provider: Academy
+	Restrict to ILT Provider: MyAcademy (ZOOM)
+ILT Evaluations - Print	Add Constraint to Permission	
+	Restrict to ILT Provider: Academy
+	Restrict to ILT Provider: MyAcademy (ZOOM)
+ILT Evaluations - View	Add Constraint to Permission	
+	Restrict to ILT Provider: Academy
+	Restrict to ILT Provider: MyAcademy (ZOOM)
+ILT Interest Tracking Report	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+ILT No Show Report - Manager Version	Add Constraint to Permission	
+	Restrict to ILT Provider: Academy
+	Restrict to ILT Provider: MyAcademy (ZOOM)
+ILT No-Show Report	Add Constraint to Permission	
+	Restrict to ILT Provider: Academy
+	Restrict to ILT Provider: MyAcademy (ZOOM)
+ILT Requests Summary Report	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+ILT Reservation Summary Report	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+ILT Session Cancellation Report	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+ILT Session Cost Report	Add Constraint to Permission	
+	Restrict to ILT Provider: Academy
+	Restrict to ILT Provider: MyAcademy (ZOOM)
+ILT Session Withdrawal Report	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+ILT Session Withdrawal Report - Manager Version	Add Constraint to Permission	
+ILT Training Contact - View Users	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+ILT Vendors - View	Add Constraint to Permission	
+	Restrict to ILT Provider: Academy
+	Restrict to ILT Provider: MyAcademy (ZOOM)
+Individual Competency Ratings Analysis Report	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+Instructor Calendar Report	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+Instructor Requests - View	Add Constraint to Permission	
+Instructors - View	Add Constraint to Permission	
+Instructors - View VILT details	Add Constraint to Permission	
+Interest Tracking - View	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+Inventory Purchase Report	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+IP White List - View		There are no constraints available for this permission.
+Knowledge Bank - View		There are no constraints available for this permission.
+Launch Ad Hoc Observation Checklist		There are no constraints available for this permission.
+Launch courses offline through the network player		There are no constraints available for this permission.
+Launch Curriculum Player		There are no constraints available for this permission.
+Launch Off-Cycle Performance Review Task	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+Learner Home		There are no constraints available for this permission.
+Learning Admin Console - View		There are no constraints available for this permission.
+Learning Admin Console - View Assigned Training	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+Learning Admin Console - View Training Graph		There are no constraints available for this permission.
+Learning Assignment Template - View	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+Learning Badge - View		There are no constraints available for this permission.
+Learning Details Page		There are no constraints available for this permission.
+Learning Evaluation Comparison Report	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+Learning Features Self Activation		There are no constraints available for this permission.
+Learning Points - View		There are no constraints available for this permission.
+Learning Progression Details Report	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+Level 1 Evaluation Administration		There are no constraints available for this permission.
+Level 1 Evaluation Report		There are no constraints available for this permission.
+Level 2 Evaluation Report	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+Level 2 Knowledge (Non-Scored) Evaluation Administration		There are no constraints available for this permission.
+Level 2 Scored Evaluation Administration		There are no constraints available for this permission.
+Level 3 Evaluation Administration		There are no constraints available for this permission.
+Library Registration Report	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+LinkedIn Learning Course Completion		There are no constraints available for this permission.
+LO Attachments - View	Add Constraint to Permission	
+LO Detail		There are no constraints available for this permission.
+LO Equivalency Report	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+Local Network Player - File Download Link - View		There are no constraints available for this permission.
+Login Report		There are no constraints available for this permission.
+Machine Learning Preferences		There are no constraints available for this permission.
+Manage Extension Period		There are no constraints available for this permission.
+Manage Goal Progress		There are no constraints available for this permission.
+Manage Streams		There are no constraints available for this permission.
+Manual Run Feed		There are no constraints available for this permission.
+Mark Training Excused		There are no constraints available for this permission.
+Material Management - View Users	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+Materials - Add Type		There are no constraints available for this permission.
+Modality Preferences		There are no constraints available for this permission.
+Move training to Archived Transcript	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+My Competency Assessments		There are no constraints available for this permission.
+New Team		There are no constraints available for this permission.
+Observation Checklist - Verifier	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+Observation Checklist Comments Report	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+Observation Checklist Report	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+Observation Checklist User - View Checklist		There are no constraints available for this permission.
+Offline Content		There are no constraints available for this permission.
+Offline Content Administration		There are no constraints available for this permission.
+Offline Learning - Download application file from Transcript	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+Offline Performance Reviews		There are no constraints available for this permission.
+Offline Player Network Learning - Launch courses from a network location		There are no constraints available for this permission.
+Old Offline Player		There are no constraints available for this permission.
+On the Job Training - Notify Observers	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+On the Job Training - Observation History From Transcript		There are no constraints available for this permission.
+On the Job Training - View	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+Online Course Assessment Attempts Report	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+Online Course Attempts Report	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+Online Training Status Report	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+Organizational Unit Type - View		There are no constraints available for this permission.
+OU Hierarchy - Manage	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+	Restricted to Division: Volkswagen Group España Distribución (include subordinates)
+	Restricted to Position: Volkswagen Group España Distribución (include subordinates)
+	Restricted to Group: Volkswagen Group España Distribución (include subordinates)
+OU Hierarchy Report	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+Parent permission for Reporting 2.0		There are no constraints available for this permission.
+Pending (Completion) Approval Training Details	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+People Matrix	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+People Matrix - Manage Preferences		There are no constraints available for this permission.
+Performance Features Self Activation		There are no constraints available for this permission.
+Performance Review Bulk Sign Off		There are no constraints available for this permission.
+Performance Review Details Report	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+Performance Review Distribution Report	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+Performance Review Distribution Report - Calibration		There are no constraints available for this permission.
+Performance Review Rating Report	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+Performance Review Report	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+Performance Review Section Rating Comparison Report	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+Performance Review Step Status Report	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+Playlists - Make Visible	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+Playlists - View		There are no constraints available for this permission.
+Pre/Post Work Training Status	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+Prepaid Content License Tracking Report	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+Prepaid Delivery Tracking Report	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+Pricing By OU		There are no constraints available for this permission.
+Processing Fees Report	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+Progress API - Communicate User's progress data		There are no constraints available for this permission.
+Proxy as User Report		There are no constraints available for this permission.
+Recruiting: Position Management – Access Jobs	Add Constraint to Permission	
+Recruiting: Position Management – Access Positions	Add Constraint to Permission	
+Reporting - Admin Custom Report Migration		There are no constraints available for this permission.
+Reporting - Apply Owner Constraints		There are no constraints available for this permission.
+Reporting - Compensation - CompensationReport - View	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+Reporting - Connect - CommunityReport - View	Add Constraint to Permission	
+Reporting - Connect - ConnectCommunitiesReport - View	Add Constraint to Permission	
+Reporting - Connect - ConnectReport - View	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+Reporting - Connect - TopicReport - View		There are no constraints available for this permission.
+Reporting - Core - CapabilitiesReport - View	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+Reporting - Core - MultiModuleReport - View	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+Reporting - Core - UserReport - View	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+Reporting - Dashboards - Compliance - View		There are no constraints available for this permission.
+Reporting - Development Plan - DevelopmentPlanReport - View	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+Reporting - Download		There are no constraints available for this permission.
+Reporting - Engage - EngageResponseReport - View	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+Reporting - Export Custom Report Details - View		There are no constraints available for this permission.
+Reporting - Extended Enterprise - TrainingUnitDistributorReport - View	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+Reporting - Extended Enterprise - TrainingUnitKeyCodeReport - View	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+Reporting - Forms - FormsReport - View	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+Reporting - Forms - StandardFormTaskReport - View	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+Reporting - FTP Delivery		There are no constraints available for this permission.
+Reporting - Learning - AssignmentReport - View	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+Reporting - Learning - CertificationApprovalHistoryReport - View	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+Reporting - Learning - CertificationRemovalHistoryReport - View	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+Reporting - Learning - CertificationReport - View	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+Reporting - Learning - CompetencyReport - View	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+Reporting - Learning - CurriculumTrainingReport - View	Add Constraint to Permission	
+Reporting - Learning - CurriculumTranscriptReport - View	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+Reporting - Learning - EvaluationsReport - View	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+Reporting - Learning - ILTInterestTrackingReport - View	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+Reporting - Learning - PlaylistReport - View	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+Reporting - Learning - ProviderandInstructorReport - View	Add Constraint to Permission	
+Reporting - Learning - QualificationsReport - View	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+Reporting - Learning - SubjectReport - View	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+Reporting - Learning - TestReport - View	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+Reporting - Learning - TrainingCapabilityReport - View	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+Reporting - Learning - TrainingFormManagementReport - View	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+Reporting - Learning - TrainingFormsCurriculaReport - View	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+Reporting - Learning - TrainingPlanReport - View	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+Reporting - Learning - TrainingReport - View	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+Reporting - Learning - TransactionReport - View	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+Reporting - Learning - TranscriptCapabilitiesReport - View	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+Reporting - Learning - TranscriptReport - View	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+Reporting - NASD - NASDUserReport - View	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+Reporting - Observation Checklist - ObservationChecklistReport - View	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+Reporting - Onboarding - OnboardingReport - View	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+Reporting - Performance - Check-InsReport - View	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+Reporting - Performance - GoalsReport - View	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+Reporting - Performance - PerformanceReport - View	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+Reporting - Performance - PerformanceReviewReport - View	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+Reporting - Performance - SharedGoalReport - View	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+Reporting - Recruiting - RecruitingReport - View	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+Reporting - Recruiting - RequisitionTemplatesReport - View		There are no constraints available for this permission.
+Reporting - Resume - ResumeReport - View	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+Reporting - Schedule report automation		There are no constraints available for this permission.
+Reporting - Succession - JobPoolSuccessionReport - View	Add Constraint to Permission	
+Reporting - Succession - SuccessionReport - View	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+Reporting - System Templates		There are no constraints available for this permission.
+Reporting - Talent Pool- TalentPoolReport - View	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+Reporting - View		There are no constraints available for this permission.
+Reporting 2.0 Report Details		There are no constraints available for this permission.
+Reporting API - Read only		There are no constraints available for this permission.
+Request Exemption from Training		There are no constraints available for this permission.
+Request Items - Forms		There are no constraints available for this permission.
+Request Items - View	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+Request Roles		There are no constraints available for this permission.
+Required Class Completion Report	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+Required/Suggested Training Report	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+Requisition: Reopen		There are no constraints available for this permission.
+Resource Requests - View		There are no constraints available for this permission.
+Resources - View		There are no constraints available for this permission.
+Resume Administration		There are no constraints available for this permission.
+Resume and Career Preferences Report	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+Resume Section Details Report	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+Roster - Email Registered Users		There are no constraints available for this permission.
+Roster - View	Add Constraint to Permission	
+Roster - View Evaluation Status		There are no constraints available for this permission.
+Roster-Batch Withdrawal or Move Users		There are no constraints available for this permission.
+Sales Tax Report	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+SCORM 2004 Course Progress Chart Report	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+Search		There are no constraints available for this permission.
+Security Role - Audit Report		There are no constraints available for this permission.
+Security Role - User Permission Report		There are no constraints available for this permission.
+Security Role Report		There are no constraints available for this permission.
+Select Peers and Reviewers	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+Self Registration Groups - View	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+Send Connection Request	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+Session Details - View Student Roster		There are no constraints available for this permission.
+Sessions - View	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+	Restrict to ILT Provider: Academy
+SF-182 Add Approver	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+Shopping Cart		There are no constraints available for this permission.
+Skills Matrix	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+Skills Matrix Report	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+Skills Profile - Critical Skills - View		There are no constraints available for this permission.
+Snapshot - Badges	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+Snapshot - Competencies	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+Snapshot - Leaderboard	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+Snapshot - Peers	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+Snapshot - Reviews	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+Snapshot Documents - View	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+Snapshot Goals - View	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+Snapshot Main - View	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+Social Learning Instructors - View	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+Survey - View		There are no constraints available for this permission.
+Survey Administrator		There are no constraints available for this permission.
+Survey Report	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+Task - View		There are no constraints available for this permission.
+Test Analysis Report	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+Test Engine - Review	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+Test Engine - View	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+Test Question Bank - View	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+Test Question Item Analysis Report	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+Top Training Registrations Report	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+Track Employees - Employee Records	Add Constraint to Permission	
+Track Employees - Past Due Report	Add Constraint to Permission	
+Track Employees - Training Progress Pie Chart	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+Track Employees - Training Status Summary Report	Add Constraint to Permission	
+Training - Curriculum Details Report	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+Training Acknowledgement Report	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+Training Certificate - Admin		There are no constraints available for this permission.
+Training Certificate - Self		There are no constraints available for this permission.
+Training Data Merge - View	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+Training Demand Forecast Accuracy Report	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+Training Demand Forecast Summary Report	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+Training Equivalency- View		There are no constraints available for this permission.
+Training Evaluation Report	Add Constraint to Permission	
+Training Hours Report	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+Training Model Modification History Report		There are no constraints available for this permission.
+Training Plan Co-Planner - Add	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+Training Plans Budgeting - View		There are no constraints available for this permission.
+Training Progress Summary Pie Chart Report	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+Training Registration Details Report	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+Training Request Form - Owner		There are no constraints available for this permission.
+Training Unit (Key Code) Report	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+Training Unit Purchase Report	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+Training Unit Redemption Report	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+Training Unit User Report	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+Training-Restrict Prerequisite Pre-Work Post-Work	Add Constraint to Permission	
+Transcript API - Request	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+Transcript Status Report	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+Universal Profile - User Record - View Users	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+	Restricted to Division: Volkswagen Group España Distribución (include subordinates)
+	Restricted to Position: Volkswagen Group España Distribución (include subordinates)
+Upload History - View	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+User Billing Report	Add Constraint to Permission	
+User Permission and Constraint Details - View	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+	Restricted to Division: Volkswagen Group España Distribución (include subordinates)
+	Restricted to Position: Volkswagen Group España Distribución (include subordinates)
+User Preferences - Core Information: View		There are no constraints available for this permission.
+User Ratings		There are no constraints available for this permission.
+User Ratings - Feedback Assignment	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+User Ratings - Feedback on specific person	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+User Ratings - Request others to provide feedback on themselves		There are no constraints available for this permission.
+User Ratings - View All Shared Ratings	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+User Ratings - View Ratings and Feedback about Other User		There are no constraints available for this permission.
+User Record as of a Date	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+User Record Audit Report	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+User Transcript Audit Report	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+User-Edit Absent Status on My Account page		There are no constraints available for this permission.
+Users - View	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+	Restricted to Division: Volkswagen Group España Distribución (include subordinates)
+	Restricted to Position: Volkswagen Group España Distribución (include subordinates)
+	Restricted to División 2: FAULT - Default (include subordinates)
+	Restricted to División 3: FAULT - Default (include subordinates)
+	Restricted to División 4: FAULT - Default (include subordinates)
+	Restricted to División 5: FAULT - Default (include subordinates)
+	Restricted to División 6: FAULT - Default (include subordinates)
+	Restricted to División 7: FAULT - Default (include subordinates)
+	Restricted to División 8: FAULT - Default (include subordinates)
+	Restricted to División 9: FAULT - Default (include subordinates)
+	Restricted to División 10: FAULT - Default (include subordinates)
+	Restricted to División 11: FAULT - Default (include subordinates)
+	Restricted to División 12: FAULT - Default (include subordinates)
+	Restricted to División 13: FAULT - Default (include subordinates)
+	Restricted to División 14: FAULT - Default (include subordinates)
+	Restricted to División 15: FAULT - Default (include subordinates)
+	Restricted to División 16: FAULT - Default (include subordinates)
+	Restricted to División 17: FAULT - Default (include subordinates)
+	Restricted to División 18: FAULT - Default (include subordinates)
+	Restricted to División 19: FAULT - Default (include subordinates)
+	Restricted to División 20: FAULT - Default (include subordinates)
+	Restricted to Puesto 2: FAULT - Default (include subordinates)
+	Restricted to Puesto 3: FAULT - Default (include subordinates)
+	Restricted to Puesto 4: FAULT - Default (include subordinates)
+	Restricted to Puesto 5: FAULT - Default (include subordinates)
+	Restricted to Puesto 6: FAULT - Default (include subordinates)
+	Restricted to Puesto 7: FAULT - Default (include subordinates)
+	Restricted to Puesto 8: FAULT - Default (include subordinates)
+	Restricted to Puesto 9: FAULT - Default (include subordinates)
+	Restricted to Puesto 10: FAULT - Default (include subordinates)
+	Restricted to Puesto 11: FAULT - Default (include subordinates)
+	Restricted to Puesto 12: FAULT - Default (include subordinates)
+	Restricted to Puesto 13: FAULT - Default (include subordinates)
+	Restricted to Puesto 14: FAULT - Default (include subordinates)
+	Restricted to Puesto 15: FAULT - Default (include subordinates)
+	Restricted to Puesto 16: FAULT - Default (include subordinates)
+	Restricted to Puesto 17: FAULT - Default (include subordinates)
+	Restricted to Puesto 18: FAULT - Default (include subordinates)
+	Restricted to Puesto 19: FAULT - Default (include subordinates)
+	Restricted to Puesto 20: FAULT - Default (include subordinates)
+	Restricted to Cost Center: Centros de Coste Volkswagen Group España Distribución. (include subordinates)
+	Restricted to Area: Areas de VGED (include subordinates)
+	Restricted to Group: Volkswagen Group España Distribución (include subordinates)
+Users - View Approver Search		There are no constraints available for this permission.
+Users - View Criteria Search		There are no constraints available for this permission.
+Users - View Custom Field Information	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+	Restricted to Division: Volkswagen Group España Distribución (include subordinates)
+	Restricted to Position: Volkswagen Group España Distribución (include subordinates)
+Users - View General Information	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+	Restricted to Division: Volkswagen Group España Distribución (include subordinates)
+	Restricted to Position: Volkswagen Group España Distribución (include subordinates)
+Users - View Local System ID		There are no constraints available for this permission.
+Users - View Manager Search		There are no constraints available for this permission.
+Users - View Middle Name		There are no constraints available for this permission.
+Users - View Personal Email Address		There are no constraints available for this permission.
+Users - View Prefix		There are no constraints available for this permission.
+Users - View Signature		There are no constraints available for this permission.
+Users - View Suffix		There are no constraints available for this permission.
+Users - View User ID		There are no constraints available for this permission.
+Users - View Users Absent Status		There are no constraints available for this permission.
+Users - View Users Active Status		There are no constraints available for this permission.
+Users - View Users Address		There are no constraints available for this permission.
+Users - View Users Approver		There are no constraints available for this permission.
+Users - View Users Email		There are no constraints available for this permission.
+Users - View Users Fax		There are no constraints available for this permission.
+Users - View Users Language		There are no constraints available for this permission.
+Users - View Users Last Hire Date		There are no constraints available for this permission.
+Users - View Users Manager		There are no constraints available for this permission.
+Users - View Users Original Hire Date		There are no constraints available for this permission.
+Users - View Users Phone		There are no constraints available for this permission.
+Users - View Users Photo		There are no constraints available for this permission.
+Users - View User's Reconciliation		There are no constraints available for this permission.
+Users - View Users Required Approvals		There are no constraints available for this permission.
+Users - View Users Time Zone		There are no constraints available for this permission.
+Users - View Users Type and Status		There are no constraints available for this permission.
+User's OUs & Groups Report	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+Versioning Dashboard Page - View		There are no constraints available for this permission.
+Video Administration - View	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+View and Create Streams		There are no constraints available for this permission.
+View Catalog Transactions		There are no constraints available for this permission.
+View Content Source Field	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+View Content Studio	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+View Goals	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+View Insights	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+View Knowledge Bank/Communities	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+View My Interests and Waitlists		There are no constraints available for this permission.
+View New Connect Preferences	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+View Performance Reviews	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+View the Subscription fields on Reporting 2.0	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+View Transcript Item	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+	Restricted to Division: Volkswagen Group España Distribución (include subordinates)
+	Restricted to Position: Volkswagen Group España Distribución (include subordinates)
+View xAPI Statements Viewer		There are no constraints available for this permission.
+View: New Connect		There are no constraints available for this permission.
+Waitlists - View	Add Constraint to Permission	
+Welcome Page - View		There are no constraints available for this permission.
+xAPI - View Learning Reporter Option on Transcript		There are no constraints available for this permission.
+xAPI - Retrieve users data from LRS	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+xAPI - View Learning Records on Transcript	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+xAPI - Write data to the LRS on behalf of users	Add Constraint to Permission	
+	Restricted to Marca: VGED (include subordinates)
+Xplor - Admin Hub		There are no constraints available for this permission.

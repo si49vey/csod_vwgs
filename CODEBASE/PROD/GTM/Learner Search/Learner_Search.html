@@ -1,0 +1,173 @@
+<script>
+	var isRunning = false;
+		
+	var bUserIsVGEDButNotAdmin = false;
+	  
+	var topicsToExclude = [
+		"Formación Novedades Ventas Volkswagen", "Formación Novedades Ventas Audi", "Formación Novedades Ventas Skoda",
+		"Formación Novedades Ventas VW VC", "Información General Academy", "Información Talent&People", "ITF", "Autodidácticos"
+	];
+	  
+	var topicsCache = {};
+  
+    var sLastLPContent = "";
+		
+	function UserIsVGED()
+	{
+		console.log("Inicio llamada a 'UserIsVGED()'");
+
+		var vgedLogoImg = $('a#ctl00_header_headerResponsive_lnkLogo > img[src*="VGED_Academy_Logo"]');
+		console.log("vgedLogoImg.length: ", vgedLogoImg.length);
+
+		console.log("Fin llamada a 'UserIsVGED()'");
+
+		return (vgedLogoImg.length > 0);		
+	} 
+
+	function UserIsNotAdmin()
+	{
+		console.log("Inicio llamada a 'UserIsNotAdmin()'");
+
+		var ouAdminAnchor = $('a[href="/admin/OrgUnits.aspx?tab_page_id=-34"]');
+		console.log("ouAdminAnchor.length: ", ouAdminAnchor.length);
+		
+		console.log("Fin llamada a 'UserIsNotAdmin()'");
+		
+		return !(ouAdminAnchor.length > 0);		
+	} 
+	 
+	function ParseTopicsFromPageText(strPageText) 
+	{
+		var arrTemp = [];
+
+		var parser = new DOMParser();
+		var doc = parser.parseFromString(strPageText, "text/html");
+
+		// Seleccionar anchors
+		var anchors = doc.querySelectorAll('a.style-for-subject-link');
+        console.log("anchors.length: ", anchors.length);
+
+		// Extraer el texto
+		anchors.forEach(function(anchor) {
+			var text = anchor.textContent;
+			if (text)
+            {
+                console.log("text-before: ", text);
+                //text = text.replace(/\s+,$/, "");
+                var index = text.indexOf(", ");
+                if (index !== -1) {
+                  text = text.substring(0, index);
+                }
+                console.log("text-after: ", text);
+				arrTemp.push(text.trim());			
+            }
+		});
+      
+		return arrTemp;
+	}
+  
+    function GetTopicsFromLearningDetailPage(loDetailPageUrl)
+	{
+		var arrTopics = [];
+
+		console.log("Inicio llamada ajax a --> ", "'" + loDetailPageUrl + "'");
+		$.ajax({
+			type: "GET",
+			url: loDetailPageUrl,
+			async: false,
+			success: function (es)
+			{
+				console.log("Llamada ajax a --> ", "'" + loDetailPageUrl + "' ==> Satisfactoria");
+				console.log("es.length: ", es.length);
+                console.log("es: ", es);
+                sLastLPContent = es;
+                console.log("es incluye 'style-for-subject-link': ", (es.indexOf("style-for-subject-link") !== -1));
+				arrTopics = ParseTopicsFromPageText(es);
+				console.log("arrTopics: ", arrTopics);
+				return arrTopics;
+			},
+			error: function (e) 
+			{
+				console.log("Llamada ajax --> ", "'" + loDetailPageUrl + "' ==> Errónea");
+				console.log(e);
+			},
+		});
+		console.log("Fin llamada ajax a --> ", "'" + loDetailPageUrl + "'");
+	}
+
+	function HideMenuBtn() 
+	{
+		console.log("Inicio de llamada a 'HideMenuBtn1()'");
+
+		var mainElements = $('div.p-panel.p-bg-white.p-bw-sm.p-bc-grey70.p-bs-solid');
+		
+		console.log("mainElements.length: ", mainElements.length);
+		
+		if (mainElements.length)
+		{		
+			mainElements.each(function(index)
+			{
+				var el = $(this);
+				
+				//if (el.data('processed')) return;
+				
+				var currLOTopics = [];
+				var hasExcludedTopic = false;
+				
+				var anchorElements = el.find('h3 > a.p-link.p-link-def.p-bl-ib');
+				console.log("anchorElements.length: ", anchorElements.length);
+				
+				if (anchorElements.length) {
+					var loPageUrl = anchorElements.first().attr('href');
+					if (!loPageUrl) return;
+					
+					loPageUrl = loPageUrl.trim();
+					
+					//currLOTopics = GetTopicsFromLearningDetailPage(loPageUrl) || [];
+                    currTopics = [];
+					
+					hasExcludedTopic = topicsToExclude.some(function(topic) {
+						return currLOTopics.includes(topic);
+					});				
+				}
+				
+				var buttonElements = el.find('div.p-button-dropdown');
+				console.log("buttonElements.length: ", buttonElements.length);
+				
+				if (buttonElements.length) 
+				{
+					var myButton = buttonElements.first();
+					if (!hasExcludedTopic) 
+					{
+						myButton.css('visibility', 'hidden');
+					}				
+				}
+				
+				//el.data('processed', true);
+			});
+		}
+
+		console.log("Fin de llamada a 'HideMenuBtn1()'");
+	}
+
+	$(document).ready(function ()
+	{
+		bUserIsVGEDButNotAdmin = UserIsVGED() && UserIsNotAdmin();
+	  
+		if (bUserIsVGEDButNotAdmin === true)
+		{
+			setInterval(function () 
+			{
+				if (isRunning) return;
+
+				isRunning = true;
+				
+				console.log("Inicio llamada a 'HideMenuBtn()'");
+				HideMenuBtn();
+				console.log("Fin llamada a 'HideMenuBtn()'");
+					
+				isRunning = false;
+			}, 750);
+		}
+	});
+</script>

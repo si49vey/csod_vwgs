@@ -1,0 +1,1241 @@
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+  var isRunning = false;
+  
+  var bUserIsVGEDButNotAdmin = false;
+  
+  var topicsToExclude = [
+		"Formación Novedades Ventas Volkswagen", "Formación Novedades Ventas Audi", "Formación Novedades Ventas Skoda",
+		"Formación Novedades Ventas VW VC", "Información General Academy", "Información Talent&People", "ITF", "Autodidácticos"
+	];
+  
+    var sLastLPContent = "";
+  
+  	function UserIsVGED() {
+		console.log("Inicio llamada a 'UserIsVGED()'");
+
+		var vgedLogoImg = $('a#ctl00_header_headerResponsive_lnkLogo > img[src*="VGED_Academy_Logo"]');
+		console.log("vgedLogoImg.length: ", vgedLogoImg.length);
+
+		console.log("Fin llamada a 'UserIsVGED()'");
+
+		return (vgedLogoImg.length > 0);		
+	} 
+
+	function UserIsNotAdmin()
+	{
+		console.log("Inicio llamada a 'UserIsNotAdmin()'");
+
+		var ouAdminAnchor = $('a[href="/admin/OrgUnits.aspx?tab_page_id=-34"]');
+		console.log("ouAdminAnchor.length: ", ouAdminAnchor.length);
+		
+		console.log("Fin llamada a 'UserIsNotAdmin()'");
+		
+		return !(ouAdminAnchor.length > 0);;		
+	}
+
+  	function ParseTopicsFromPageText(strPageText) 
+	{
+		var arrTemp = [];
+
+		var parser = new DOMParser();
+		var doc = parser.parseFromString(strPageText, "text/html");
+
+		// Seleccionar anchors
+		var anchors = doc.querySelectorAll('a.style-for-subject-link');
+        console.log("anchors.length: ", anchors.length);
+
+		// Extraer el texto
+		anchors.forEach(function(anchor) {
+			var text = anchor.textContent;
+			if (text)
+            {
+                console.log("text-before: ", text);
+                //text = text.replace(/\s+,$/, "");
+                var index = text.indexOf(", ");
+                if (index !== -1) {
+                  text = text.substring(0, index);
+                }
+                console.log("text-after: ", text);
+				arrTemp.push(text.trim());
+			}
+		});
+
+		return arrTemp;
+	}
+  
+    // Añadir la función GetTopicsFromLearningDetailPage
+    function GetTopicsFromLearningDetailPage(loDetailPageUrl)
+    {
+		var arrTopics = [];
+
+		console.log("Inicio llamada ajax a --> ", "'" + loDetailPageUrl + "'");
+		$.ajax({
+			type: "GET",
+			url: loDetailPageUrl,
+			async: false,
+			success: function (es)
+			{
+				console.log("Llamada ajax a --> ", "'" + loDetailPageUrl + "' ==> Satisfactoria");
+				console.log("es.length: ", es.length);
+                console.log("es: ", es);
+                sLastLPContent = es;
+                console.log("es incluye 'style-for-subject-link': ", (es.indexOf("style-for-subject-link") !== -1));
+				arrTopics = ParseTopicsFromPageText(es);
+				console.log("arrTopics: ", arrTopics);
+				return arrTopics;
+			},
+			error: function (e) 
+			{
+				console.log("Llamada ajax --> ", "'" + loDetailPageUrl + "' ==> Errónea");
+				console.log(e);
+			},
+		});
+		console.log("Fin llamada ajax a --> ", "'" + loDetailPageUrl + "'");
+    }
+  
+	function HideMenuBtn() 
+	{
+		console.log("Inicio de llamada a 'HideMenuBtn()'");
+
+		var mainElements = $('div.p-panel.p-bg-white.p-bw-sm.p-bc-grey70.p-bs-solid');
+		
+		console.log("mainElements.length: ", mainElements.length);
+		
+		if (mainElements.length)
+		{		
+			mainElements.each(function(index)
+			{
+				var el = $(this);
+				
+				//if (el.data('processed')) return;
+				
+				var currLOTopics = [];
+				var hasExcludedTopic = false;
+				
+				var anchorElements = el.find('h3 > a.p-link.p-link-def.p-bl-ib');
+				console.log("anchorElements.length: ", anchorElements.length);
+				
+				if (anchorElements.length) {
+					var loPageUrl = anchorElements.first().attr('href');
+					if (!loPageUrl) return;
+					
+					loPageUrl = loPageUrl.trim();
+					
+					//currLOTopics = GetTopicsFromLearningDetailPage(loPageUrl) || [];
+                    currLOTopics = [];
+					
+					hasExcludedTopic = topicsToExclude.some(function(topic) {
+						return currLOTopics.includes(topic);
+					});				
+				}
+				
+				var buttonElements = el.find('div.p-button-dropdown');
+				console.log("buttonElements.length: ", buttonElements.length);
+				
+				if (buttonElements.length) 
+				{
+					var myButton = buttonElements.first();
+					if (!hasExcludedTopic) 
+					{
+						myButton.css('visibility', 'hidden');
+					}				
+				}
+				
+				//el.data('processed', true);
+			});
+		}
+
+		console.log("Fin de llamada a 'HideMenuBtn()'");
+	}
+  
+if (typeof window.jQuery !== "undefined") {
+  if (typeof window.Cornerstone === "undefined") {
+    window.Cornerstone = {};
+  }
+
+  if (!Cornerstone.VOLKSWAGEN) {
+    Cornerstone.VOLKSWAGEN = {};
+  }
+
+  if (!Cornerstone.VOLKSWAGEN.TrainingUserDetail) {
+    Cornerstone.VOLKSWAGEN.TrainingUserDetail = {};
+  }
+
+  Cornerstone.VOLKSWAGEN.TrainingUserDetail = jQuery.extend(
+    Cornerstone.VOLKSWAGEN.TrainingUserDetail,
+    {
+      hueValue: 0,
+      pv: true,
+      divExist: false,
+      userLevel: "",
+      brand: "",
+      position: "",
+
+      // URLs imágenes
+      urlImgPlanCertificacionSeat:
+        "/clientimg/talentimpulseplatform/welcome/images/certificacion/BannerCerti_S.jpg",
+      urlImgPlanCertificacionCupra:
+        "/clientimg/talentimpulseplatform/welcome/images/certificacion/BannerCerti_C.jpg",
+      urlImgFormacionContinuaSeat:
+        "/clientimg/talentimpulseplatform/welcome/images/formacionContinua/ContinuaSEAT-L-1.jpg",
+      urlImgFormacionContinuaCupra:
+        "/clientimg/talentimpulseplatform/welcome/images/formacionContinua/Continua-CUPRA-L-1.jpg",
+      urlImgCompetenciasPersonales:
+        "/clientimg/talentimpulseplatform/welcome/images/desarrolloCompetenciasPersonalesNewFolder/Competencias_2.jpg",
+      urlImgBibliotecaDigitalSeat:
+        "/clientimg/talentimpulseplatform/welcome/images/destacados/bibliotecaDigital_S.jpg",
+      urlImgBibliotecaDigitalCupra:
+        "/clientimg/talentimpulseplatform/welcome/images/destacados/bibliotecaDigital_C.png",
+      urlImgSocialLearningSeat:
+        "/clientimg/talentimpulseplatform/welcome/images/destacados/socialLearning_S.jpg",
+      urlImgSocialLearningCupra:
+        "/clientimg/talentimpulseplatform/welcome/images/destacados/socialLearning_C.png",
+      urlImgTecnoRetos:
+        "/clientimg/talentimpulseplatform/welcome/images/destacados/tecnoRetos.png",
+
+      // URLs Links
+      urlPlanCertificacionSeat:
+        "/catalog/CustomPage.aspx?id=221000475&brand=SEAT",
+      urlPlanCertificacionCupra:
+        "/catalog/CustomPage.aspx?id=221000475&brand=CUPRA",
+      urlFormacionContinuaSeat:
+        "/catalog/CustomPage.aspx?id=221000476&brand=SEAT",
+      urlFormacionContinuaCupra:
+        "/catalog/CustomPage.aspx?id=221000476&brand=CUPRA",
+      urlBibliotecaDigitalSeat:
+        "/catalog/CustomPage.aspx?id=221000482&brand=SEAT",
+      urlBibliotecaDigitalCupra:
+        "/catalog/CustomPage.aspx?id=221000482&brand=CUPRA",
+      urlTecnoRetos: "https://tecnoretos-gruposeat.es/",
+
+      // Producción
+      urlImgBannerCatalogo: '/clientimg/talentimpulseplatform/welcome/images/BannerCatalogo4.jpg',
+      urlCatalogoPostventa: 'https://talentimpulseplatform.csod.com/ui/lms-learner-search/search?pageNumber=1',
+      urlCompetenciasPersonales: 'https://talentimpulseplatform.csod.com/ui/lms-learner-search/search?pageNumber=1',
+      urlSocialLearning: 'https://talentimpulseplatform.csod.com/phnx/driver.aspx?routename=Social/Communities&tab_page_id=-200157026',
+      urlImgTicketsPV:"/clientimg/talentimpulseplatform/welcome/images/ticketsPV2.jpg",
+      urlTicketsPV: "https://fep.seat.es/ServiceTonic/login.jsf",
+      urlImgDashboardPV:"/clientimg/talentimpulseplatform/welcome/images/dashboardPV3.jpg",
+      urlDashboardPV: "https://dashboard.formacionseat.es/login",
+
+      // Stage
+      // urlImgBannerCatalogo:
+      //   "/clientimg/talentimpulseplatform/welcome/images/BannerCatalogo4.jpg",
+      // urlImgTicketsPV:
+      //   "/clientimg/talentimpulseplatform/welcome/images/BannerPV2.png",
+      // urlImgDashboardPV:
+      //   "/clientimg/talentimpulseplatform/welcome/images/dashboardPV.jpg",
+      // urlCatalogoPostventa:
+      //   "https://talentimpulseplatform-stg.csod.com/ui/lms-learner-search/search?pageNumber=1",
+      // urlTicketsPV: "https://fep.seat.es/ServiceTonic/login.jsf",
+      // urlDashboardPV: "https://dashboard.formacionseat.es/login",
+      // urlCompetenciasPersonales:
+      //   "https://talentimpulseplatform-stg.csod.com/ui/lms-learner-search/search?pageNumber=1",
+      // urlSocialLearning:
+      //   "https://talentimpulseplatform-stg.csod.com/phnx/driver.aspx?routename=Social/Communities&tab_page_id=-200157026",
+
+      // Pilot
+      //urlImgBannerCatalogo: '/clientimg/talentimpulseplatform/welcome/images/BannerCatalogo4.jpg',
+      //urlCatalogoPostventa: 'https://talentimpulseplatform-pilot.csod.com/ui/lms-learner-search/search?pageNumber=1',
+      //urlCompetenciasPersonales: 'https://talentimpulseplatform-pilot.csod.com/ui/lms-learner-search/search?pageNumber=1',
+      //urlSocialLearning: 'https://talentimpulseplatform.csod-pilot.com/phnx/driver.aspx?routename=Social/Communities&tab_page_id=-200157026',
+      //urlImgTicketsPV:"/clientimg/talentimpulseplatform/welcome/images/ticketsPV2.jpg",
+      //urlTicketsPV: "https://fep.seat.es/ServiceTonic/login.jsf",
+      //urlImgDashboardPV:"/clientimg/talentimpulseplatform/welcome/images/dashboardPV3.jpg",
+      //urlDashboardPV: "https://dashboard.formacionseat.es/login",
+
+      // FORMACION INICIAL DE PV
+      urlForm: "/catalog/CustomPage.aspx?id=221000476",
+      urlCert: "",
+      urlImgFormInicial1: "/catalog/CustomPage.aspx?id=221000475",
+      urlImgFormInicial2: "/catalog/CustomPage.aspx?id=221000483",
+
+      coverDiv: $("<div>").addClass("loadingDiv").text("Cargando..."),
+
+      // MULTIMARCA LAYOUT
+      divAccordion: $("<div>").addClass("accordion"),
+      itemSeat: $("<div>").addClass("accordion-item accordion-item-seat"),
+      // itemCupra: $("<div>").addClass("accordion-item accordion-item-cupra"),
+      divAccordionSeatContent: $("<div>").addClass("accordion-content"),
+      divAccordionCupraContent: $("<div>").addClass("accordion-content"),
+
+      // DEFAULT LAYOUT
+      divTitulo: $("<div>").addClass("divTitulo"),
+      imgCarousel: $("<div>").addClass("bannerImgPV"),
+      imgCarouselFormacion: $('<div id="carouselFormacion">').addClass(
+        "imgCarouselFormacion"),
+      divTituloDestacados: $("<div>").addClass("divTitulo"),
+      imgCarouselDestacados: $("<div>").addClass("imgCarousel"),
+      divTituloMantenteEnForma: $("<div>").addClass("divTituloMantente"),
+      carouselPonteEnForma: $("<div>").addClass("carouselPonteEnForma"),
+
+      // PV LAYOUT
+      imgCatalogoPosventa: $("<div>").addClass("bannerImgPV"),
+      imgFormacionInicial: $('<div id="FormacionInicialPV">').addClass(
+        "imgCarouselFormacion"),
+      certificacionPV: $("<div>").addClass("bannerImgPV"),
+      formacionContinuaPV: $("<div>").addClass("bannerImgPV"),
+      bannerPV: $("<div>").addClass("bannerImgPV"),
+      imgDashboardPV: $("<div style='width: 50%;'>").addClass("bannerImgPV"),
+      imgTicketsPV: $("<div style='width: 50%;'>").addClass("bannerImgPV"),
+
+      showModalWait: function () {
+        Cornerstone.VOLKSWAGEN.TrainingUserDetail.hueValue = 0;
+        document
+          .querySelector(".evo_spinner_container")
+          .style.setProperty(
+            "--hue",
+            Cornerstone.VOLKSWAGEN.TrainingUserDetail.hueValue + "deg");
+        document.getElementById("evoWaitNew").style.display = "flex";
+
+        Cornerstone.VOLKSWAGEN.TrainingUserDetail.timerWaitMessage =
+          setInterval(function () {
+            Cornerstone.VOLKSWAGEN.TrainingUserDetail.hueValue =
+              (Math.min(
+                Cornerstone.VOLKSWAGEN.TrainingUserDetail.hueValue,
+                130) +
+                5) %
+              360;
+            document
+              .querySelector(".evo_spinner_container")
+              .style.setProperty(
+                "--hue",
+                Cornerstone.VOLKSWAGEN.TrainingUserDetail.hueValue + "deg");
+          }, 2500);
+      },
+
+      hideModalWait: function () {
+        if (!document.getElementById("evoWaitNew")) {
+          Cornerstone.VOLKSWAGEN.TrainingUserDetail.initPopup();
+        }
+
+        document.getElementById("evoWaitNew").style.display = "none";
+        clearInterval(
+          Cornerstone.VOLKSWAGEN.TrainingUserDetail.timerWaitMessage);
+        Cornerstone.VOLKSWAGEN.TrainingUserDetail.hueValue = 0;
+        document
+          .querySelector(".evo_spinner_container")
+          .style.setProperty(
+            "--hue",
+            Cornerstone.VOLKSWAGEN.TrainingUserDetail.hueValue + "deg");
+      },
+
+      //Llamada para cargar el usuario
+      loadTrainingUserDetail: function () {
+        var userId;
+        Cornerstone.VOLKSWAGEN.TrainingUserDetail.showModalWait();
+
+        $.ajax({
+          success: function (es) {
+            if (es.includes("TargetUser")) {
+              var posInicio = es.indexOf("TargetUser") + "TargetUser".length;
+              var posFinal = es.substring(posInicio).indexOf('"') + posInicio;
+              targetUser = es.substring(posInicio + 1, posFinal);
+              userId = targetUser;
+              Cornerstone.VOLKSWAGEN.TrainingUserDetail.callServiceTrainingUserDetail(
+                userId);
+            }
+          },
+          error: function (e) {
+            console.log(e);
+            Cornerstone.VOLKSWAGEN.TrainingUserDetail.hideModalWait();
+          },
+          type: "GET",
+          url: "/Social/UniversalProfile/UPPageRedirectHandler.ashx"});
+      },
+
+      //Llamada a servicio para cargar los datos del usuario
+      callServiceTrainingUserDetail: function (userId) {
+        var myPromise = new Promise(function (myResolve, myReject) {
+          $.ajax({
+            success: function (data) {
+              Cornerstone.VOLKSWAGEN.TrainingUserDetail.setUserInfo(data);
+              myResolve();
+              Cornerstone.VOLKSWAGEN.TrainingUserDetail.hideModalWait();
+            },
+            error: function (e) {
+              console.log(e);
+              myReject();
+              Cornerstone.VOLKSWAGEN.TrainingUserDetail.hideModalWait();
+            },
+            contentType: "application/json",
+            data: {
+              userId: userId},
+            type: "GET",
+            headers: { "X-API-KEY": "WItyrud5kvQgLsLCXhPrq9p5aOOp1pKC" },
+            url: "https://g5165r562m.execute-api.eu-west-1.amazonaws.com/PRO/training/userDetail"});
+        });
+
+        myPromise.then(function () {
+          Cornerstone.VOLKSWAGEN.TrainingUserDetail.createLayout();
+          Cornerstone.VOLKSWAGEN.TrainingUserDetail.createCarrousel();
+          Cornerstone.VOLKSWAGEN.TrainingUserDetail.addLayout();
+          Cornerstone.VOLKSWAGEN.TrainingUserDetail.addUserLevel();
+        });
+      },
+
+      setUserInfo: function (data) {
+        // Nivel de formación
+        Cornerstone.VOLKSWAGEN.TrainingUserDetail.userLevel = data.level;
+
+        // Venta o Postventa
+        switch (data.profile) {
+          case "Area_VO":
+            Cornerstone.VOLKSWAGEN.TrainingUserDetail.pv = false;
+            break;
+          case "Area_Ventas":
+            Cornerstone.VOLKSWAGEN.TrainingUserDetail.pv = false;
+            break;
+          case "Area_Posventa":
+            Cornerstone.VOLKSWAGEN.TrainingUserDetail.pv = true;
+            break;
+          default:
+            Cornerstone.VOLKSWAGEN.TrainingUserDetail.pv = false;
+            break;
+        }
+
+        // Marca
+        switch (data.brand) {
+          case "SEAT|CUPRA":
+            Cornerstone.VOLKSWAGEN.TrainingUserDetail.brand = 0;
+            break;
+          case "SEAT":
+            Cornerstone.VOLKSWAGEN.TrainingUserDetail.brand = 1;
+            break;
+          case "CUPRA":
+            Cornerstone.VOLKSWAGEN.TrainingUserDetail.brand = 2;
+            break;
+          default:
+            Cornerstone.VOLKSWAGEN.TrainingUserDetail.brand = -1;
+            break;
+        }
+
+        //Posición
+        Cornerstone.VOLKSWAGEN.TrainingUserDetail.position = data.positions;
+      },
+
+      addUserLevel: function () {
+        var test = $("<p>")
+          .text(Cornerstone.VOLKSWAGEN.TrainingUserDetail.userLevel)
+          .css({ "text-align": "center" });
+        $('*[class="p-panel p-p-l-sm halign-center"]').append(test);
+      },
+
+      createLayout: function () {
+        /*** LAYOUT MULTIMARCA ***/
+
+        // Crear el header del acordeón SEAT
+        var headerSeatContent = "Plan de formación SEAT";
+        headerSeatContent +=
+          '<svg class="arrow-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor">';
+        headerSeatContent +=
+          '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>';
+        headerSeatContent += "</svg>";
+
+        var headerSeat = $("<button>")
+          .addClass("accordion-header")
+          .html(headerSeatContent);
+        headerSeat.click(function () {
+          var content = headerSeat.next();
+          var icon = headerSeat.find(".arrow-icon");
+
+          // Toggle del contenido
+          content.slideToggle(400, function () {
+            // Toggle de la flecha (rotación)
+            if (content.is(":visible")) {
+              icon.css("transform", "rotate(180deg)");
+            } else {
+              icon.css("transform", "rotate(0deg)");
+            }
+          });
+        });
+
+        // Append del primer ítem
+        Cornerstone.VOLKSWAGEN.TrainingUserDetail.itemSeat.append(headerSeat);
+
+        // Crear el header del acordeón CUPRA
+        var headerCupraContent = "Plan de formación CUPRA";
+        headerCupraContent +=
+          '<svg class="arrow-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor">';
+        headerCupraContent +=
+          '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>';
+        headerCupraContent += "</svg>";
+
+        var headerCupra = $("<button>")
+          .addClass("accordion-header")
+          .html(headerCupraContent);
+        headerCupra.click(function () {
+          var content = headerCupra.next();
+          var icon = headerCupra.find(".arrow-icon");
+
+          // Toggle del contenido
+          content.slideToggle(400, function () {
+            // Toggle de la flecha (rotación)
+            if (content.is(":visible")) {
+              icon.css("transform", "rotate(180deg)");
+            } else {
+              icon.css("transform", "rotate(0deg)");
+            }
+          });
+        });
+
+        // Append del segundo ítem
+        // Cornerstone.VOLKSWAGEN.TrainingUserDetail.itemCupra.append(headerCupra);
+
+        /*** LAYOUT VENTAS ***/
+
+        /*** PLAN DE CERTIFICACIÓN ***/
+        if (Cornerstone.VOLKSWAGEN.TrainingUserDetail.brand == 0) {
+          // Multimarca
+          var imgBanerCertificacionSeat = $(
+            '<img style="width: 100%;transition: 0.5s;object-fit: cover;" class="zoomImg">').attr(
+            "src",
+            Cornerstone.VOLKSWAGEN.TrainingUserDetail
+              .urlImgPlanCertificacionSeat);
+          var imgBanerCertificacionCupra = $(
+            '<img style="width: 100%;transition: 0.5s;object-fit: cover;" class="zoomImg">').attr(
+            "src",
+            Cornerstone.VOLKSWAGEN.TrainingUserDetail
+              .urlImgPlanCertificacionCupra);
+
+          var linkBanerCertificacionSeat = $("<a>")
+            .attr(
+              "href",
+              Cornerstone.VOLKSWAGEN.TrainingUserDetail
+                .urlPlanCertificacionSeat)
+            .append(imgBanerCertificacionSeat);
+          var imgDivBanerCertificacionSeat = $(
+            '<div style="overflow: hidden;width: 100%">').append(linkBanerCertificacionSeat);
+
+          var linkBanerCertificacionCupra = $("<a>")
+            .attr(
+              "href",
+              Cornerstone.VOLKSWAGEN.TrainingUserDetail
+                .urlPlanCertificacionCupra)
+            .append(imgBanerCertificacionCupra);
+          var imgDivBanerCertificacionCupra = $(
+            '<div style="overflow: hidden;width: 100%">').append(linkBanerCertificacionCupra);
+
+          // Añadimos el contenido
+          Cornerstone.VOLKSWAGEN.TrainingUserDetail.divAccordionSeatContent.append(
+            imgDivBanerCertificacionSeat);
+          Cornerstone.VOLKSWAGEN.TrainingUserDetail.divAccordionCupraContent.append(
+            imgDivBanerCertificacionCupra);
+        } else {
+          var imgElementPlan = $(
+            '<img style="width: 100%;transition: 0.5s;object-fit: cover;" class="zoomImg">');
+
+          if (Cornerstone.VOLKSWAGEN.TrainingUserDetail.brand == 2) {
+            // Es marca CUPRA
+            imgElementPlan = $(
+              '<img style="width: 100%;transition: 0.5s;object-fit: cover;" class="zoomImg">').attr(
+              "src",
+              Cornerstone.VOLKSWAGEN.TrainingUserDetail
+                .urlImgPlanCertificacionCupra);
+            var linkElementPlan = $("<a>")
+              .attr(
+                "href",
+                Cornerstone.VOLKSWAGEN.TrainingUserDetail
+                  .urlPlanCertificacionCupra)
+              .append(imgElementPlan);
+          } else {
+            // Es marca SEAT
+            imgElementPlan = $(
+              '<img style="width: 100%;transition: 0.5s;object-fit: cover;" class="zoomImg">').attr(
+              "src",
+              Cornerstone.VOLKSWAGEN.TrainingUserDetail
+                .urlImgPlanCertificacionSeat);
+            var linkElementPlan = $("<a>")
+              .attr(
+                "href",
+                Cornerstone.VOLKSWAGEN.TrainingUserDetail
+                  .urlPlanCertificacionSeat)
+              .append(imgElementPlan);
+          }
+
+          var imgDivPlan = $(
+            '<div style="overflow: hidden;width: 100%">').append(linkElementPlan);
+          Cornerstone.VOLKSWAGEN.TrainingUserDetail.imgCarousel.append(
+            imgDivPlan);
+        }
+
+        /*** FORMACIÓN CONTÍNUA ***/
+        if (Cornerstone.VOLKSWAGEN.TrainingUserDetail.brand == 0) {
+          var imagesFormacionSeat = [
+            {
+              src: Cornerstone.VOLKSWAGEN.TrainingUserDetail
+                .urlImgFormacionContinuaSeat,
+              link: Cornerstone.VOLKSWAGEN.TrainingUserDetail
+                .urlFormacionContinuaSeat},
+            // { src: Cornerstone.VOLKSWAGEN.TrainingUserDetail.urlImgCompetenciasPersonales, link: Cornerstone.VOLKSWAGEN.TrainingUserDetail.urlCompetenciasPersonales }
+            ];
+          var imagesFormacionCupra = [
+            {
+              src: Cornerstone.VOLKSWAGEN.TrainingUserDetail
+                .urlImgFormacionContinuaCupra,
+              link: Cornerstone.VOLKSWAGEN.TrainingUserDetail
+                .urlFormacionContinuaCupra},
+            // { src: Cornerstone.VOLKSWAGEN.TrainingUserDetail.urlImgCompetenciasPersonales, link: Cornerstone.VOLKSWAGEN.TrainingUserDetail.urlCompetenciasPersonales }
+            ];
+
+          $.each(imagesFormacionSeat, function (index, image) {
+            var imgElementFormacionSeat = $(
+              '<img style="width: 100%;transition: 0.5s;object-fit: cover;" class="zoomImg">').attr("src", image.src);
+            var linkElementFormacionSeat = $("<a>")
+              .attr("href", image.link)
+              .append(imgElementFormacionSeat);
+            var divFormacionSeat = $(
+              '<div style="overflow: hidden;width: 100%">')
+              .addClass("item")
+              .append(linkElementFormacionSeat);
+            Cornerstone.VOLKSWAGEN.TrainingUserDetail.divAccordionSeatContent.append(
+              divFormacionSeat);
+          });
+
+          $.each(imagesFormacionCupra, function (index, image) {
+            var imgElementFormacionCupra = $(
+              '<img style="width: 100%;transition: 0.5s;object-fit: cover;" class="zoomImg">').attr("src", image.src);
+            var linkElementFormacionCupra = $("<a>")
+              .attr("href", image.link)
+              .append(imgElementFormacionCupra);
+            var divFormacionCupra = $(
+              '<div style="overflow: hidden;width: 100%">')
+              .addClass("item")
+              .append(linkElementFormacionCupra);
+            Cornerstone.VOLKSWAGEN.TrainingUserDetail.divAccordionCupraContent.append(
+              divFormacionCupra);
+          });
+        } else {
+          var imagesFormacion = [];
+
+          if (Cornerstone.VOLKSWAGEN.TrainingUserDetail.brand == 2) {
+            // Es marca CUPRA
+            imagesFormacion = [
+              {
+                src: Cornerstone.VOLKSWAGEN.TrainingUserDetail
+                  .urlImgFormacionContinuaCupra,
+                link: Cornerstone.VOLKSWAGEN.TrainingUserDetail
+                  .urlFormacionContinuaCupra},
+              // { src: Cornerstone.VOLKSWAGEN.TrainingUserDetail.urlImgCompetenciasPersonales, link: Cornerstone.VOLKSWAGEN.TrainingUserDetail.urlCompetenciasPersonales }
+            ];
+          } else {
+            // Es marca SEAT
+            imagesFormacion = [
+              {
+                src: Cornerstone.VOLKSWAGEN.TrainingUserDetail
+                  .urlImgFormacionContinuaSeat,
+                link: Cornerstone.VOLKSWAGEN.TrainingUserDetail
+                  .urlFormacionContinuaSeat},
+              // { src: Cornerstone.VOLKSWAGEN.TrainingUserDetail.urlImgCompetenciasPersonales, link: Cornerstone.VOLKSWAGEN.TrainingUserDetail.urlCompetenciasPersonales }
+            ];
+          }
+
+          $.each(imagesFormacion, function (index, image) {
+            var imgElementFormacion = $(
+              '<img style="width: 100%;transition: 0.5s;object-fit: cover;" class="zoomImg">').attr("src", image.src);
+            var linkElementFormacion = $("<a>")
+              .attr("href", image.link)
+              .append(imgElementFormacion);
+            var divFormacion = $('<div style="overflow: hidden;width: 100%">')
+              .addClass("item")
+              .append(linkElementFormacion);
+            Cornerstone.VOLKSWAGEN.TrainingUserDetail.imgCarouselFormacion.append(
+              divFormacion);
+          });
+        }
+
+        /*** BIBLIOTECA DIGITAL / SOCIAL LEARNING / TECNO RETOS ***/
+        if (Cornerstone.VOLKSWAGEN.TrainingUserDetail.brand == 0) {
+          var imagesDestacadosSeat = [
+            {
+              src: Cornerstone.VOLKSWAGEN.TrainingUserDetail
+                .urlImgBibliotecaDigitalSeat,
+              link: Cornerstone.VOLKSWAGEN.TrainingUserDetail
+                .urlBibliotecaDigitalSeat,
+              targetBlank: false},
+            {
+              src: Cornerstone.VOLKSWAGEN.TrainingUserDetail
+                .urlImgSocialLearningSeat,
+              link: Cornerstone.VOLKSWAGEN.TrainingUserDetail.urlSocialLearning,
+              targetBlank: false},
+            {
+              src: Cornerstone.VOLKSWAGEN.TrainingUserDetail.urlImgTecnoRetos,
+              link: Cornerstone.VOLKSWAGEN.TrainingUserDetail.urlTecnoRetos,
+              targetBlank: true}];
+          var imagesDestacadosCupra = [
+            {
+              src: Cornerstone.VOLKSWAGEN.TrainingUserDetail
+                .urlImgBibliotecaDigitalCupra,
+              link: Cornerstone.VOLKSWAGEN.TrainingUserDetail
+                .urlBibliotecaDigitalCupra,
+              targetBlank: false},
+            {
+              src: Cornerstone.VOLKSWAGEN.TrainingUserDetail
+                .urlImgSocialLearningCupra,
+              link: Cornerstone.VOLKSWAGEN.TrainingUserDetail.urlSocialLearning,
+              targetBlank: false},
+            {
+              src: Cornerstone.VOLKSWAGEN.TrainingUserDetail.urlImgTecnoRetos,
+              link: Cornerstone.VOLKSWAGEN.TrainingUserDetail.urlTecnoRetos,
+              targetBlank: true}];
+
+          $.each(imagesDestacadosSeat, function (index, image) {
+            var imgElementDestacadosSeat = $(
+              '<img style="width: 100%;transition: 0.5s;object-fit: cover;" class="zoomImg">')
+              .attr("src", image.src)
+              .attr("alt", image.title)
+              .css({ "max-width": "100%" });
+            var linkElementDestacadosSeat = $("<a>").attr("href", image.link);
+
+            if (image.targetBlank) {
+              linkElementDestacadosSeat.attr("target", "_blank");
+            }
+
+            linkElementDestacadosSeat.append(imgElementDestacadosSeat);
+
+            var itemElementDestacadosSeat = $(
+              '<div style="overflow: hidden;width: calc(33% - 4px);">')
+              .addClass("item")
+              .append(linkElementDestacadosSeat);
+            Cornerstone.VOLKSWAGEN.TrainingUserDetail.divAccordionSeatContent.append(
+              itemElementDestacadosSeat);
+          });
+
+          $.each(imagesDestacadosCupra, function (index, image) {
+            var imgElementDestacadosCupra = $(
+              '<img style="width: 100%;transition: 0.5s;object-fit: cover;" class="zoomImg">')
+              .attr("src", image.src)
+              .attr("alt", image.title)
+              .css({ "max-width": "100%" });
+            var linkElementDestacadosCupra = $("<a>").attr("href", image.link);
+
+            if (image.targetBlank) {
+              linkElementDestacadosCupra.attr("target", "_blank");
+            }
+
+            linkElementDestacadosCupra.append(imgElementDestacadosCupra);
+
+            var itemElementDestacadosCupra = $(
+              '<div style="overflow: hidden;width: calc(33% - 4px);">')
+              .addClass("item")
+              .append(linkElementDestacadosCupra);
+            Cornerstone.VOLKSWAGEN.TrainingUserDetail.divAccordionCupraContent.append(
+              itemElementDestacadosCupra);
+          });
+        } else {
+          var imagesDestacados = [];
+
+          if (Cornerstone.VOLKSWAGEN.TrainingUserDetail.brand == 2) {
+            // Es marca CUPRA
+            imagesDestacados = [
+              {
+                src: Cornerstone.VOLKSWAGEN.TrainingUserDetail
+                  .urlImgBibliotecaDigitalCupra,
+                link: Cornerstone.VOLKSWAGEN.TrainingUserDetail
+                  .urlBibliotecaDigitalCupra,
+                targetBlank: false},
+              {
+                src: Cornerstone.VOLKSWAGEN.TrainingUserDetail
+                  .urlImgSocialLearningCupra,
+                link: Cornerstone.VOLKSWAGEN.TrainingUserDetail
+                  .urlSocialLearning,
+                targetBlank: false},
+              {
+                src: Cornerstone.VOLKSWAGEN.TrainingUserDetail.urlImgTecnoRetos,
+                link: Cornerstone.VOLKSWAGEN.TrainingUserDetail.urlTecnoRetos,
+                targetBlank: true}];
+          } else {
+            // Es marca SEAT
+            imagesDestacados = [
+              {
+                src: Cornerstone.VOLKSWAGEN.TrainingUserDetail
+                  .urlImgBibliotecaDigitalSeat,
+                link: Cornerstone.VOLKSWAGEN.TrainingUserDetail
+                  .urlBibliotecaDigitalSeat,
+                targetBlank: false},
+              {
+                src: Cornerstone.VOLKSWAGEN.TrainingUserDetail
+                  .urlImgSocialLearningSeat,
+                link: Cornerstone.VOLKSWAGEN.TrainingUserDetail
+                  .urlSocialLearning,
+                targetBlank: false},
+              {
+                src: Cornerstone.VOLKSWAGEN.TrainingUserDetail.urlImgTecnoRetos,
+                link: Cornerstone.VOLKSWAGEN.TrainingUserDetail.urlTecnoRetos,
+                targetBlank: true}];
+          }
+
+          $.each(imagesDestacados, function (index, image) {
+            var imgElementDestacados = $(
+              '<img style="width: 100%;transition: 0.5s;object-fit: cover;" class="zoomImg">')
+              .attr("src", image.src)
+              .attr("alt", image.title)
+              .css({ "max-width": "100%" });
+            var linkElementDestacados = $("<a>").attr("href", image.link);
+
+            if (image.targetBlank) {
+              linkElementDestacados.attr("target", "_blank");
+            }
+
+            linkElementDestacados.append(imgElementDestacados);
+
+            var itemElementDestacados = $(
+              '<div style="overflow: hidden;width: 100%">')
+              .addClass("item")
+              .append(linkElementDestacados);
+            Cornerstone.VOLKSWAGEN.TrainingUserDetail.imgCarouselDestacados.append(
+              itemElementDestacados);
+          });
+        }
+
+        /*** LAYOUT POSTVENTA ***/
+
+        // Catálogo de cursos
+        var imgCatalogoPostventa = $(
+          '<img style="width: 100%; transition: 0.5s; object-fit: cover;" class="zoomImg">').attr(
+          "src",
+          Cornerstone.VOLKSWAGEN.TrainingUserDetail.urlImgBannerCatalogo);
+        var linkCatalogoPostventa = $("<a>")
+          .attr(
+            "href",
+            Cornerstone.VOLKSWAGEN.TrainingUserDetail.urlCatalogoPostventa)
+          .append(imgCatalogoPostventa);
+        var imgDivCatalogoPostventa = $(
+          '<div style="overflow: hidden; width: 100%">').append(linkCatalogoPostventa);
+        Cornerstone.VOLKSWAGEN.TrainingUserDetail.imgCatalogoPosventa.append(
+          imgDivCatalogoPostventa);
+
+        // Banner Dashboard PV
+        var imgDashboardPV = $(
+          '<img style="height: 300px; width: 100%; transition: 0.5s; object-fit: cover;" class="zoomImg">').attr(
+          "src",
+          Cornerstone.VOLKSWAGEN.TrainingUserDetail.urlImgDashboardPV);
+        var linkDashboardPV = $("<a>")
+          .attr("href", Cornerstone.VOLKSWAGEN.TrainingUserDetail.urlDashboardPV)
+          .attr("target", "_blank")
+          .attr("rel", "noopener noreferrer")
+          .append(imgDashboardPV);
+        var imgDivDashboardPV = $(
+          '<div style="overflow: hidden; width: 100%; margin: 5px;">').append(linkDashboardPV);
+        Cornerstone.VOLKSWAGEN.TrainingUserDetail.imgDashboardPV.append(
+          imgDivDashboardPV);
+
+        // Banner Tickets PV
+        var imgTicketsPV = $(
+          '<img style=" height: 300px; width: 100%; transition: 0.5s; object-fit: cover;" class="zoomImg">').attr(
+          "src",
+          Cornerstone.VOLKSWAGEN.TrainingUserDetail.urlImgTicketsPV);
+        var linkTicketsPV = $("<a>")
+          .attr("href", Cornerstone.VOLKSWAGEN.TrainingUserDetail.urlTicketsPV)
+          .attr("target", "_blank")
+          .attr("rel", "noopener noreferrer")
+          .append(imgTicketsPV);
+        var imgDivTicketsPV = $(
+          '<div style="overflow: hidden; width: 100%; margin: 5px;">').append(linkTicketsPV);
+        Cornerstone.VOLKSWAGEN.TrainingUserDetail.imgTicketsPV.append(
+          imgDivTicketsPV);
+
+        // Panel Formación Inicial + Plan incorporación
+        var imagesFormacionInicial = [
+          {
+            src: "https://picsum.photos/372/264",
+            link: Cornerstone.VOLKSWAGEN.TrainingUserDetail.urlImgFormInicial1},
+          {
+            src: "https://picsum.photos/372/264",
+            link: Cornerstone.VOLKSWAGEN.TrainingUserDetail.urlImgFormInicial2}];
+
+        $.each(imagesFormacionInicial, function (index, image) {
+          var imgElement = $("<img>")
+            .attr("src", image.src)
+            .css({ "max-width": "100%" });
+          var linkElement = $("<a>")
+            .attr("href", image.link)
+            .append(imgElement);
+          var imgDiv = $("<div>").addClass("item").append(linkElement);
+          Cornerstone.VOLKSWAGEN.TrainingUserDetail.imgFormacionInicial.append(
+            imgDiv);
+        });
+
+        //Banner certificación
+        var imgElementCert = $("<img>").attr(
+          "src",
+          "https://picsum.photos/780/320");
+        var linkElementCert = $("<a>")
+          .attr("href", Cornerstone.VOLKSWAGEN.TrainingUserDetail.urlCert)
+          .append(imgElementCert);
+        var imgDivCert = $("<div>").append(linkElementCert);
+        Cornerstone.VOLKSWAGEN.TrainingUserDetail.certificacionPV.append(
+          imgDivCert);
+
+        //Banner Formación continua obligatoria
+        var imgElementFor = $("<img>").attr(
+          "src",
+          "https://picsum.photos/780/320");
+        var linkElementFor = $("<a>")
+          .attr("href", Cornerstone.VOLKSWAGEN.TrainingUserDetail.urlForm)
+          .append(imgElementFor);
+        var imgDivFor = $("<div>").append(linkElementFor);
+        Cornerstone.VOLKSWAGEN.TrainingUserDetail.formacionContinuaPV.append(
+          imgDivFor);
+
+        console.log("Layout creado");
+      },
+
+      // Crear carrousel de "Mantente en Forma"
+      createCarrousel: function () {
+        // Carrousel de "Mantente en Forma"
+        var imagesMantenteEnForma = [
+          {
+            src: "/clientimg/talentimpulseplatform/welcome/images/PonteForma/Mantente_en_forma1.png",
+            link: "https://google.com",
+            title: "img1"},
+          {
+            src: "/clientimg/talentimpulseplatform/welcome/images/PonteForma/Mantente_en_forma2.png",
+            link: "https://google.com",
+            title: "img2"},
+          {
+            src: "/clientimg/talentimpulseplatform/welcome/images/PonteForma/Mantente_en_forma3.png",
+            link: "https://google.com",
+            title: "img3"}];
+
+        var currentIndex = 0;
+        var totalImages = imagesMantenteEnForma.length;
+        var interval;
+
+        var carouselImages = $(
+          '<div style="overflow: hidden;width: 100%">').addClass("carouselImages");
+        var prevButton = $(
+          '<button type="button" class="prevImg" data-id="btn">&#10094;</button>');
+        var nextButton = $(
+          '<button type="button" class="nextImg" data-id="btn">&#10095;</button>');
+
+        Cornerstone.VOLKSWAGEN.TrainingUserDetail.carouselPonteEnForma.append(
+          carouselImages);
+
+        $.each(imagesMantenteEnForma, function (index, image) {
+          var imgPonteEnForma = $(
+            '<img style="width: 100%;transition: 0.5s;object-fit: cover;" class="zoomImg">')
+            .attr("src", image.src)
+            .attr("alt", image.title);
+          var linkElement = $("<a>")
+            .attr("href", image.link)
+            .append(imgPonteEnForma);
+          carouselImages.append(linkElement);
+        });
+
+        Cornerstone.VOLKSWAGEN.TrainingUserDetail.carouselPonteEnForma.append(
+          prevButton);
+        Cornerstone.VOLKSWAGEN.TrainingUserDetail.carouselPonteEnForma.append(
+          nextButton);
+
+        var tituloMantenteEnForma = $("<h1>")
+          .addClass("tituloCupra")
+          .text("MANTENTE EN FORMA");
+        Cornerstone.VOLKSWAGEN.TrainingUserDetail.divTituloMantenteEnForma.append(
+          tituloMantenteEnForma);
+
+        function showImage(index) {
+          carouselImages.children().hide();
+          carouselImages.children().eq(index).show();
+        }
+
+        function nextImage() {
+          currentIndex++;
+          if (currentIndex >= totalImages) {
+            currentIndex = 0;
+          }
+          showImage(currentIndex);
+        }
+
+        function prevImage() {
+          currentIndex--;
+          if (currentIndex < 0) {
+            currentIndex = totalImages - 1;
+          }
+          showImage(currentIndex);
+        }
+
+        showImage(currentIndex);
+        interval = setInterval(nextImage, 7000);
+
+        nextButton.click(function () {
+          clearInterval(interval);
+          nextImage();
+          interval = setInterval(nextImage, 7000);
+        });
+
+        prevButton.click(function () {
+          clearInterval(interval);
+          prevImage();
+          interval = setInterval(nextImage, 7000);
+        });
+
+        console.log("Carrousel 'Mantente en forma' creado");
+      },
+
+      hideCarrousel: function () {
+        //Ocultamos los paneles no necesarios
+
+        // Continuar aprendizaje
+        if ($('*[data-id="2"]').length > 0) {
+          $('*[data-id="2"]').hide();
+        }
+        // Elecciones principales para 'user'
+        //if ($('*[data-id="4"]').length > 0) {
+        //$('*[data-id="4"]').hide();
+        //}
+        // Tendencia en su puesto
+        //if ($('*[data-id="5"]').length > 0) {
+        //$('*[data-id="5"]').hide();
+        //}
+        // Inspirado por sus temas
+        //if ($('*[data-id="6"]').length > 0) {
+        //    $('*[data-id="6"]').hide();
+        //}
+        // Lo mas popular
+        //if ($('*[data-id="7"]').length > 0) {
+        //    $('*[data-id="7"]').hide();
+        //}
+        // Inspirado por sus temas
+        //if ($('.p-panel.p-p-v-md.p-p-t-lg').length > 0) {
+        //    $('.p-panel.p-p-v-md.p-p-t-lg').hide();
+        //}
+        // Destacados
+        //if ($('*[data-id="8"]').length > 0) {
+        //    $('*[data-id="8"]').hide();
+        //}
+        // Sugerido
+        //if ($('*[data-id="9"]').length > 0) {
+        //    $('*[data-id="9"]').hide();
+        //}
+        // Obigatorio
+        //if ($('*[data-id="10"]').length > 0) {
+        //    $('*[data-id="10"]').hide();
+        //}
+        // Listas de reproducción de 'user'
+        //if ($('*[data-id="11"]').length > 0) {
+        //    $('*[data-id="11"]').hide();
+        //}
+      },
+
+      addLayout: function () {
+        var observer = new MutationObserver(function (mutations) {
+          if (
+            $('div[data-id="1"]').length > 0 &&
+            Cornerstone.VOLKSWAGEN.TrainingUserDetail.divExist === false
+          ) {
+            //Modificar cabezera
+            var span = document.querySelector(
+              "div.p-mediaquerycontainer div.p-prerenderplaceholder span.p-text");
+
+            if (span) {
+              var spanText = span.textContent;
+              if (spanText.includes("¿Qué le gustaría aprender hoy?")) {
+                spanText = spanText.replace(
+                  "¿Qué le gustaría aprender hoy?",
+                  "¿Qué te gustaría aprender hoy?");
+                span.textContent = spanText;
+              }
+            }
+
+            // Div General
+            Cornerstone.VOLKSWAGEN.TrainingUserDetail.divExist = true;
+            var divGeneral = $('<div data-id="12">');
+            var divFooterMantenteEnForma = $('<div data-id="13">');
+
+            if (Cornerstone.VOLKSWAGEN.TrainingUserDetail.pv === true) {
+              var positionUser = Cornerstone.VOLKSWAGEN.TrainingUserDetail.position;
+              console.log("Positions (array):", positionUser);
+
+              // Banner Catálogo Posventa
+              divGeneral.append(Cornerstone.VOLKSWAGEN.TrainingUserDetail.imgCatalogoPosventa);
+
+              if (Cornerstone.VOLKSWAGEN.TrainingUserDetail.brand == 0) {
+                if (Array.isArray(positionUser) && positionUser.some(function (p) {
+                return p && (p.positionId === "AS-Admin" || p.positionId === "S-AS-TM");
+                })) {
+                    //Banner Dashboard & Tickets PV                                        
+                    var divDashboardTickets = $("<div>")
+                        .css({
+                            display: "flex",
+                            "justify-content": "space-between",
+                            "align-items": "flex-start",
+                            "width": "100%"
+                        });
+
+                    divDashboardTickets.append(Cornerstone.VOLKSWAGEN.TrainingUserDetail.imgDashboardPV);
+                    divDashboardTickets.append(Cornerstone.VOLKSWAGEN.TrainingUserDetail.imgTicketsPV);
+
+                    divGeneral.append(divDashboardTickets);
+                }
+              }
+
+              // Formacion inicial
+              // divGeneral.append(Cornerstone.VOLKSWAGEN.TrainingUserDetail.imgFormacionInicial);
+
+              // Certificación Postventa
+              // divGeneral.append(Cornerstone.VOLKSWAGEN.TrainingUserDetail.certificacionPV);
+
+              // Formacion continua Postventa
+              // divGeneral.append(Cornerstone.VOLKSWAGEN.TrainingUserDetail.formacionContinuaPV);
+
+              // Ocultar formaciones recomendadas
+              //Cornerstone.VOLKSWAGEN.TrainingUserDetail.hideCarrousel();
+
+              divGeneral.insertAfter($('div[data-id="1"]'));
+            } else {
+              // Verificamos si el usuario tiene una marca personalizada. En caso contrario, no cargamos ningún layout personalizado
+              if (!(Cornerstone.VOLKSWAGEN.TrainingUserDetail.brand == -1)) {
+                // Verificamos si el usuario es multimarca
+                if (Cornerstone.VOLKSWAGEN.TrainingUserDetail.brand == 0) {
+                  // El usuario es multimarca
+                  Cornerstone.VOLKSWAGEN.TrainingUserDetail.itemSeat.append(
+                    Cornerstone.VOLKSWAGEN.TrainingUserDetail
+                      .divAccordionSeatContent);
+                  Cornerstone.VOLKSWAGEN.TrainingUserDetail.divAccordion.append(
+                    Cornerstone.VOLKSWAGEN.TrainingUserDetail.itemSeat);
+
+                  // Cornerstone.VOLKSWAGEN.TrainingUserDetail.itemCupra.append(
+                  //   Cornerstone.VOLKSWAGEN.TrainingUserDetail
+                  //     .divAccordionCupraContent);
+                  // Cornerstone.VOLKSWAGEN.TrainingUserDetail.divAccordion.append(
+                  //   Cornerstone.VOLKSWAGEN.TrainingUserDetail.itemCupra);
+
+                  divGeneral.append(
+                    Cornerstone.VOLKSWAGEN.TrainingUserDetail.divAccordion);
+
+                  // Funcionalidad para mostrar/ocultar contenido del acordeón
+                  var headers = document.querySelectorAll(".accordion-header");
+
+                  headers.forEach(function (header) {
+                    header.addEventListener("click", function () {
+                      var content = header.nextElementSibling;
+                      var icon = header.querySelector(".arrow-icon");
+
+                      // Toggle del contenido
+                      content.style.display =
+                        content.style.display === "block" ? "none" : "block";
+
+                      // Toggle de la flecha (rotación)
+                      if (content.style.display === "block") {
+                        icon.style.transform = "rotate(180deg)";
+                      } else {
+                        icon.style.transform = "rotate(0deg)";
+                      }
+                    });
+                  });
+                } else {
+                  // Panel Certificacion
+                  divGeneral.append(
+                    Cornerstone.VOLKSWAGEN.TrainingUserDetail.divTitulo);
+                  divGeneral.append(
+                    Cornerstone.VOLKSWAGEN.TrainingUserDetail.imgCarousel);
+
+                  // Panel Formacion
+                  divGeneral.append(
+                    Cornerstone.VOLKSWAGEN.TrainingUserDetail
+                      .imgCarouselFormacion);
+
+                  // Panel Destacados
+                  divGeneral.append(
+                    Cornerstone.VOLKSWAGEN.TrainingUserDetail
+                      .divTituloDestacados);
+                  divGeneral.append(
+                    Cornerstone.VOLKSWAGEN.TrainingUserDetail
+                      .imgCarouselDestacados);
+                }
+
+                // Mantente en forma
+                divFooterMantenteEnForma.append(
+                  Cornerstone.VOLKSWAGEN.TrainingUserDetail
+                    .divTituloMantenteEnForma);
+                divFooterMantenteEnForma.append(
+                  Cornerstone.VOLKSWAGEN.TrainingUserDetail
+                    .carouselPonteEnForma);
+
+                divGeneral.insertAfter($('div[data-id="1"]'));
+
+                // === SOLO VENTAS === Ocultar "Continuar aprendizaje"
+                if (Cornerstone.VOLKSWAGEN.TrainingUserDetail.pv === false) {
+                  Cornerstone.VOLKSWAGEN.TrainingUserDetail.hideCarrousel();
+                }
+
+                divFooterMantenteEnForma.insertAfter($('div[data-id="12"]'));
+              }
+            }
+
+            $('*[id="player-footer"]').hide();
+            console.log("Layout añadido");
+          }
+        });
+
+        observer.observe(document.body, {
+          characterData: true,
+          childList: true,
+          subtree: true});
+      },
+
+      init: function () {
+        // Mostrar modal de espera
+        var body = document.getElementsByTagName("body")[0];
+
+        if (!document.getElementById("evoWaitNew")) {
+          var evoWaitNew = document.createElement("div");
+          evoWaitNew.classList.add("evo_modal_wait");
+          evoWaitNew.id = "evoWaitNew";
+          evoWaitNew.style.display = "none";
+
+          var evoSpinnerContainer = document.createElement("div");
+          evoSpinnerContainer.classList.add("evo_spinner_container");
+          evoSpinnerContainer.id = "evoSpinnerContainer";
+
+          var evoLogo = document.createElement("img");
+          evoLogo.classList.add("evo_client_icon");
+          evoLogo.src =
+            "https://evoluxia-js.s3.eu-west-1.amazonaws.com/csod_logo.png";
+          evoSpinnerContainer.appendChild(evoLogo);
+
+          for (var i = 1; i <= 6; i++) {
+            var evoCircle = document.createElement("img");
+            evoCircle.classList.add("evo_circle");
+            evoCircle.classList.add("evo_circle" + i);
+            evoCircle.src =
+              "https://evoluxia-js.s3.eu-west-1.amazonaws.com/evo_logo.png";
+            evoSpinnerContainer.appendChild(evoCircle);
+          }
+
+          evoWaitNew.appendChild(evoSpinnerContainer);
+          body.appendChild(evoWaitNew);
+        }
+
+        Cornerstone.VOLKSWAGEN.TrainingUserDetail.showModalWait();
+
+        //obtener datos de usuario + layout personalizado
+        Cornerstone.VOLKSWAGEN.TrainingUserDetail.loadTrainingUserDetail();
+      }});
+
+  jQuery(document).ready(function () {
+    Cornerstone.VOLKSWAGEN.TrainingUserDetail.init();
+    
+	bUserIsVGEDButNotAdmin = UserIsVGED() && UserIsNotAdmin();
+	console.log("UserIsVGED() && UserIsNotAdmin(): ", bUserIsVGEDButNotAdmin, " bUserIsVGEDButNotAdmin === true: ", bUserIsVGEDButNotAdmin === true);
+
+	if (bUserIsVGEDButNotAdmin === true) 
+	{
+	  setInterval(function () {
+			if (isRunning) return;
+		
+			isRunning = true;
+		
+			console.log("Inicio llamada a 'HideMenuBtn()'");
+			HideMenuBtn();
+			console.log("Fin llamada a 'HideMenuBtn()'");
+		
+			isRunning = false;
+	  }, 750);
+	}
+  });
+  
+}
+</script>
