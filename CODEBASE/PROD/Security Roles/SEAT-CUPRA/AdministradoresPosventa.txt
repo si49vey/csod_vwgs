@@ -3074,4 +3074,3 @@ xAPI - Write data to the LRS on behalf of users	Add Constraint to Permission
 	Restricted to Marca: Posventa (include subordinates)
 	Restricted to Division: SEAT|CUPRA (include subordinates)
 Xplor - Admin Hub		There are no constraints available for this permission.
-

@@ -1,0 +1,96 @@
+<script>
+var userId = 0;
+var pv = false;
+var brand = 0;
+var userLevel;
+ 
+function loadTrainingUserDetail()
+{
+    $.ajax({
+        type: "GET",
+        url: "/Social/UniversalProfile/UPPageRedirectHandler.ashx",
+        success: function (es)
+        {
+            if (es.includes("TargetUser")) 
+            {
+                var posInicio = es.indexOf("TargetUser") + "TargetUser".length;
+                var posFinal = es.substring(posInicio).indexOf('"') + posInicio;
+                targetUser = es.substring(posInicio + 1, posFinal);
+                userId = targetUser;
+                callServiceTrainingUserDetail(userId);
+            }
+        },
+        error: function (e)
+        {
+            console.log(e);
+        }
+    });
+}
+
+function callServiceTrainingUserDetail(userId)
+{
+    $.ajax({
+        contentType: "application/json",
+        data: {userId: userId},
+        type: "GET",
+        headers: { "X-API-KEY": "WItyrud5kvQgLsLCXhPrq9p5aOOp1pKC" },
+        url: "https://g5165r562m.execute-api.eu-west-1.amazonaws.com/PRO/training/userDetail",
+        success: function (data) 
+        {
+            setUserInfo(data);
+        },
+        error: function (e) 
+        {
+            console.log(e);
+        }
+    });
+}
+
+function setUserInfo(data)
+{
+    // Nivel de formaciÃ³n
+    userLevel = data.level;
+
+    // Venta o Postventa
+    switch (data.profile)
+    {
+        case "Area_VO":
+            pv = false;
+            break;
+        case "Area_Ventas":
+            pv = false;
+            break;
+        case "Area_Posventa":
+            pv = true;
+            break;
+        default:
+            pv = false;
+            break;
+    }
+
+    // Marca
+    switch (data.brand)
+    {
+        case "SEAT|CUPRA":
+            brand = 0;
+            break;
+        case "SEAT":
+            brand = 1;
+            break;
+        case "CUPRA":
+            brand = 2;
+            break;
+        default:
+            brand = -1;
+            break;
+    }
+
+    //Posición
+    position = data.positions;
+}
+ 
+$(window).ready(function ()
+{
+    loadTrainingUserDetail();
+});
+</script>
